@@ -146,9 +146,9 @@
     border:1px solid var(--border);background:var(--surface);color:var(--ink);margin-bottom:16px;}
   .tagsearch::placeholder{color:var(--ink-3)}
   .tagsearch:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
-  .taggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;align-items:start;}
+  .taggrid{columns:330px;column-gap:14px;}
   .taggroup{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 18px 14px;
-    box-shadow:var(--shadow);}
+    box-shadow:var(--shadow);break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 14px;width:100%;}
   .taggroup > h3{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
     font-weight:700;margin:0 0 12px;display:flex;justify-content:space-between;align-items:baseline;}
   .taggroup > h3 .gt{font-family:var(--mono);color:var(--ink-2);letter-spacing:0}
