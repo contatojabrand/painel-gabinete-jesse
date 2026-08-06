@@ -119,7 +119,7 @@
   .hbar > span{display:block;height:100%;border-radius:6px;}
   .zone-crit{color:var(--crit)} .zone-warn{color:var(--warn)}
   .fill-crit{background:var(--crit)} .fill-warn{background:var(--warn)}
-  .chip-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .chip-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
   .st{background:var(--surface-2);border-radius:9px;padding:8px 9px;text-align:center;}
   .st .n{font-family:var(--mono);font-size:16px;font-weight:600;line-height:1;}
   .st .l{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-top:4px;}
@@ -195,8 +195,8 @@
     </div>
     <div class="kpi">
       <div class="lab">Acumulado (7 dias)</div>
-      <div class="val tnum">253</div>
-      <div class="sub">31/07 a 05/08 · todos os chips</div>
+      <div class="val tnum">254</div>
+      <div class="sub">últimos 7 dias · todos os chips</div>
     </div>
     <div class="kpi">
       <div class="lab">Chips ativos</div>
@@ -214,24 +214,25 @@
     <section class="card">
       <div class="sec-h"><h2>Mensagens por atendente</h2><span class="hint">por chip · 7 dias</span></div>
       <div class="bars">
-        <div class="bar-row"><span class="name">Leony</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="qt tnum">117</span></div>
-        <div class="bar-row"><span class="name">Pedro</span><div class="track"><div class="fill" style="width:29%"></div></div><span class="qt tnum">34</span></div>
-        <div class="bar-row"><span class="name">Miriã</span><div class="track"><div class="fill" style="width:7.7%"></div></div><span class="qt tnum">9</span></div>
-        <div class="bar-row"><span class="name">Gabriel</span><div class="track"><div class="fill" style="width:3.4%"></div></div><span class="qt tnum">4</span></div>
-        <div class="bar-row zero"><span class="name">Pri</span><div class="track"><div class="fill" style="width:0"></div></div><span class="qt tnum">0</span></div>
+        <div class="bar-row"><span class="name">Leony</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="qt tnum">137</span></div>
+        <div class="bar-row"><span class="name">Gabriel</span><div class="track"><div class="fill" style="width:39%"></div></div><span class="qt tnum">53</span></div>
+        <div class="bar-row"><span class="name">Pedro</span><div class="track"><div class="fill" style="width:37%"></div></div><span class="qt tnum">51</span></div>
+        <div class="bar-row"><span class="name">Miriã</span><div class="track"><div class="fill" style="width:7.3%"></div></div><span class="qt tnum">10</span></div>
+        <div class="bar-row"><span class="name">Pri</span><div class="track"><div class="fill" style="width:2.2%"></div></div><span class="qt tnum">3</span></div>
+        <div class="bar-row zero"><span class="name">Andreia</span><div class="track"><div class="fill" style="width:0"></div></div><span class="qt tnum">0</span></div>
       </div>
       <div class="chart-foot">
-        <span>⚠️ Números distorcidos por um <b>bug já corrigido</b>: envios da equipe caíam no chip da <b>Leony</b>.</span>
+        <span><b>Leony</b> aparece alta porque, até 04/08, um <b>bug já corrigido</b> fazia envios da equipe caírem no chip dela. De 05/08 em diante conta no chip certo. <b>Andreia</b> logou os 3 chips em 05/08 (ainda aquecendo).</span>
       </div>
     </section>
 
     <section class="card">
-      <div class="sec-h"><h2>Resumo do dia</h2><span class="hint">05/08</span></div>
+      <div class="sec-h"><h2>Resumo do dia</h2><span class="hint">06/08</span></div>
       <div class="alerts">
-        <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">✅ Bug corrigido — Ricardo</span>O sistema foi ajustado: os envios não devem mais cair no número errado. A partir de <b>hoje</b> a contagem por chip fica correta.</div></div>
-        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Gabriel · contabilização</span>Enviou ontem pelo chip errado (caiu na Leony). Corrigido — o <b>relatório de amanhã</b> já sai certo.</div></div>
-        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Aquecimento dos chips</span>Chips novos (saúde 5–20/100). Manter <b>~28 msgs/dia por chip</b> e subir aos poucos.</div></div>
-        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Atribuição de conversas</span>Marcar-se como <b>responsável</b> na conversa para o relatório sair fiel por atendente.</div></div>
+        <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">✅ 92 enviadas ontem (05/08)</span>Já com a contagem por chip correta: <b>Gabriel 49</b>, <b>Leony 23</b>, <b>Pedro 17</b>, <b>Pri 3</b>. O bug de roteamento (envios caindo no chip da Leony) foi corrigido.</div></div>
+        <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">Andreia · 3 chips logados</span>Os 3 chips da Andreia (Business, Normal, Pessoal) foram conectados em 05/08. São novos, entram em <b>aquecimento</b> e começam devagar.</div></div>
+        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Aquecimento dos chips</span>Saúde ainda baixa (7–22/100). Manter <b>~28 msgs/dia por chip</b> e subir aos poucos.</div></div>
+        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Atribuição de conversas</span>Marcar-se como <b>responsável</b> na conversa: no relatório por usuário quase todos aparecem com 0 porque não estão se atribuindo.</div></div>
       </div>
     </section>
   </div>
@@ -239,58 +240,76 @@
   <div class="sec-h" style="margin-top:26px"><h2>Saúde dos chips &amp; observações</h2><span class="hint">score /100 · capacidade diária · nota do dia</span></div>
   <section class="chips">
 
+    <!-- Gabriel -->
+    <div class="chip">
+      <div class="chip-head"><div><div class="chip-name">Gabriel</div><div class="chip-num">+55 48 ••••-4999 · criado 29/07</div></div><span class="pill on">Conectado</span></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">7 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:7%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">49</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">53</div><div class="l">7 dias</div></div></div>
+      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · foto ✓ · bio ✓</div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">Puxou o dia: 49 envios ontem, já contados no chip certo (o bug de roteamento foi corrigido). Saúde ainda baixa; manter o aquecimento.</div></div>
+    </div>
+
     <!-- Leony -->
     <div class="chip">
       <div class="chip-head"><div><div class="chip-name">Leony</div><div class="chip-num">+55 48 ••••-9474 · criado 30/07</div></div><span class="pill on">Conectado</span></div>
-      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">5 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:5%"></span></div></div>
-      <div class="chip-stats"><div class="st"><div class="n tnum">—</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">117</div><div class="l">7 dias</div></div><div class="st"><div class="n tnum">688</div><div class="l">agenda</div></div></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">7 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:7%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">23</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">137</div><div class="l">7 dias</div></div></div>
       <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · foto ✓ · bio ✓</div>
-      <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">Ficou com contatos demais porque, por um bug, todos estavam enviando pelo número dela. O Ricardo ajustou o sistema — hoje isso não deve mais acontecer.</div></div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">23 envios ontem. O acumulado de 137 vem dos dias com o bug (envios da equipe caíam no chip dela); já corrigido a partir de 05/08.</div></div>
     </div>
 
     <!-- Pedro -->
     <div class="chip">
       <div class="chip-head"><div><div class="chip-name">Pedro</div><div class="chip-num">+55 48 ••••-8421 · criado 30/07</div></div><span class="pill on">Conectado</span></div>
-      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">10 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:10%"></span></div></div>
-      <div class="chip-stats"><div class="st"><div class="n tnum">—</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">34</div><div class="l">7 dias</div></div><div class="st"><div class="n tnum">5</div><div class="l">agenda</div></div></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">14 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:14%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">17</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">51</div><div class="l">7 dias</div></div></div>
       <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · sem foto · bio ✓</div>
-      <div class="obs empty"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">Trabalhando normalmente — sem observações hoje.</div></div>
-    </div>
-
-    <!-- Miriã -->
-    <div class="chip">
-      <div class="chip-head"><div><div class="chip-name">Miriã</div><div class="chip-num">+55 48 ••••-4508 · criado 29/07</div></div><span class="pill on">Conectado</span></div>
-      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-warn">20 / 100</span></div><div class="hbar"><span class="fill-warn" style="width:20%"></span></div></div>
-      <div class="chip-stats"><div class="st"><div class="n tnum">—</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">9</div><div class="l">7 dias</div></div><div class="st"><div class="n tnum">14</div><div class="l">agenda</div></div></div>
-      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · foto ✓ · bio ✓</div>
-      <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">Os contatos serão compartilhados com ela hoje para que possa começar a disparar as mensagens.</div></div>
-    </div>
-
-    <!-- Gabriel -->
-    <div class="chip">
-      <div class="chip-head"><div><div class="chip-name">Gabriel</div><div class="chip-num">+55 48 ••••-4999 · criado 29/07</div></div><span class="pill on">Conectado</span></div>
-      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">5 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:5%"></span></div></div>
-      <div class="chip-stats"><div class="st"><div class="n tnum">—</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">4</div><div class="l">7 dias</div></div><div class="st"><div class="n tnum">637</div><div class="l">agenda</div></div></div>
-      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · foto ✓ · bio ✓</div>
-      <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">Enviou ontem, mas pelo chip errado (caiu no da Leony) por causa do bug. O Ricardo atualizou o sistema; a partir de hoje conta no chip certo — o relatório de amanhã já sai correto.</div></div>
+      <div class="obs empty"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">17 envios ontem. Trabalhando normalmente.</div></div>
     </div>
 
     <!-- Pri -->
     <div class="chip">
       <div class="chip-head"><div><div class="chip-name">Pri</div><div class="chip-num">+55 48 ••••-4353 · criado 04/08</div></div><span class="pill on">Conectado</span></div>
-      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">10 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:10%"></span></div></div>
-      <div class="chip-stats"><div class="st"><div class="n tnum">—</div><div class="l">ontem</div></div><div class="st hot"><div class="n tnum">0</div><div class="l">7 dias</div></div><div class="st"><div class="n tnum">181</div><div class="l">agenda</div></div></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">14 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:14%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">3</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">3</div><div class="l">7 dias</div></div></div>
       <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · sem foto · bio ✓</div>
-      <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">Chip logado ontem. Começa os envios hoje — a lista está sendo entregue a ela na manhã de hoje.</div></div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">Chip logado em 04/08. Já começou: 3 envios ontem. Subir aos poucos no aquecimento.</div></div>
     </div>
 
-    <!-- Andreia (3 chips logados) -->
+    <!-- Miriã -->
     <div class="chip">
-      <div class="chip-head"><div><div class="chip-name">Andreia</div><div class="chip-num">3 chips logados · 05/08</div></div><span class="pill on">Conectado</span></div>
-      <div class="health"><div class="hl"><span>Saúde dos chips</span><span class="score zone-crit">5 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:5%"></span></div></div>
-      <div class="chip-stats"><div class="st"><div class="n tnum">—</div><div class="l">ontem</div></div><div class="st hot"><div class="n tnum">0</div><div class="l">7 dias</div></div><div class="st"><div class="n tnum">3</div><div class="l">chips</div></div></div>
-      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia por chip</span> · chips novos (aquecendo)</div>
-      <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">3 chips logados para a Andreia. São novos, então começam devagar (aquecimento) e sobem aos poucos. Envios a partir de hoje.</div></div>
+      <div class="chip-head"><div><div class="chip-name">Miriã</div><div class="chip-num">+55 48 ••••-4508 · criado 29/07</div></div><span class="pill on">Conectado</span></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-warn">22 / 100</span></div><div class="hbar"><span class="fill-warn" style="width:22%"></span></div></div>
+      <div class="chip-stats"><div class="st hot"><div class="n tnum">0</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">10</div><div class="l">7 dias</div></div></div>
+      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · foto ✓ · bio ✓</div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">0 envios ontem. Já tem os contatos; retomar os disparos (~28/dia).</div></div>
+    </div>
+
+    <!-- Andreia 1 (Business) -->
+    <div class="chip">
+      <div class="chip-head"><div><div class="chip-name">Andreia 1</div><div class="chip-num">Business · ••••-3237 · logado 05/08</div></div><span class="pill on">Conectado</span></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-warn">22 / 100</span></div><div class="hbar"><span class="fill-warn" style="width:22%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">0</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">0</div><div class="l">7 dias</div></div></div>
+      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · chip novo (aquecendo)</div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">Chip logado em 05/08. Novo, em aquecimento; sem envios ainda.</div></div>
+    </div>
+
+    <!-- Andreia 2 (Normal) -->
+    <div class="chip">
+      <div class="chip-head"><div><div class="chip-name">Andreia 2</div><div class="chip-num">Normal · ••••-8704 · logado 05/08</div></div><span class="pill on">Conectado</span></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-warn">22 / 100</span></div><div class="hbar"><span class="fill-warn" style="width:22%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">0</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">0</div><div class="l">7 dias</div></div></div>
+      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · chip novo (aquecendo)</div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">Chip logado em 05/08. Novo, em aquecimento; sem envios ainda.</div></div>
+    </div>
+
+    <!-- Andreia 3 (Pessoal) -->
+    <div class="chip">
+      <div class="chip-head"><div><div class="chip-name">Andreia 3</div><div class="chip-num">Pessoal · logado 05/08</div></div><span class="pill on">Conectado</span></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">7 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:7%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">0</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">0</div><div class="l">7 dias</div></div></div>
+      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia</span> · chip novo (aquecendo)</div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>06/08</span></div><div class="ot">Chip logado em 05/08. Novo, em aquecimento; sem envios ainda.</div></div>
     </div>
 
   </section>
@@ -308,7 +327,7 @@
       <span><i class="dot" style="background:var(--good)"></i>Bom (70+)</span>
     </div>
     <div><b>Fonte:</b> Otimise Político → Conversas → Métricas (aba Atendimento tem quebra diária e período personalizado; aba Chips WhatsApp tem a saúde/Raio-X de cada chip). A saúde também aparece no módulo WhatsApp.</div>
-    <div><b>“Enviadas ontem”:</b> valor exato do dia, lido em <b>Conversas → Métricas → Atendimento → Evolução diária</b> (barra “Enviadas”). Conta todos os chips (envios manuais + campanhas/aniversários/disparos). Em 05/08 foram <b>92</b> enviadas; o acumulado da semana (31/07 a 05/08) foi <b>253</b>.</div>
+    <div><b>“Enviadas ontem”:</b> valor exato do dia, lido em <b>Conversas → Métricas → Atendimento → Evolução diária</b> (barra “Enviadas”). Conta todos os chips (envios manuais + campanhas/aniversários/disparos). Em 05/08 foram <b>92</b> enviadas (Gabriel 49, Leony 23, Pedro 17, Pri 3); o acumulado dos últimos 7 dias foi <b>254</b>.</div>
     <div><b>Atualização:</b> painel atualizado 1×/dia, de manhã, com o resultado do dia anterior. As observações de cada chip são renovadas diariamente pela coordenação.</div>
   </footer>
 </div>
