@@ -196,6 +196,29 @@
   .hub a .ico{font-size:15px;line-height:1}
   .hub a .sub{color:var(--ink-3);font-weight:500;font-size:11px;}
 
+  /* --- Funil de atendimento --- */
+  .funcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);}
+  .funtop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+  .funtop .desc{font-size:12.5px;color:var(--ink-2);max-width:560px;}
+  .funtop label{font-size:12px;color:var(--ink-3);white-space:nowrap;}
+  .funsel{font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:9px;border:1px solid var(--border);
+    background:var(--surface);color:var(--ink);margin-left:6px;}
+  .funsel:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+  .funrows{display:flex;flex-direction:column;gap:11px;}
+  .funrow{display:grid;grid-template-columns:150px 1fr 60px;align-items:center;gap:14px;}
+  .funrow .fn{font-size:13px;font-weight:600;white-space:nowrap;}
+  .funrow .fn small{display:block;font-weight:500;color:var(--ink-3);font-size:10.5px;}
+  .funtrack{height:26px;border-radius:8px;background:var(--surface-2);overflow:hidden;}
+  .funtrack>span{display:block;height:100%;border-radius:8px;min-width:0;transition:width .5s cubic-bezier(.2,.8,.2,1);
+    background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 65%,#fff));}
+  .funrow.win .funtrack>span{background:linear-gradient(90deg,var(--good),color-mix(in srgb,var(--good) 60%,#fff))}
+  .funrow.lost .funtrack>span{background:linear-gradient(90deg,var(--crit),color-mix(in srgb,var(--crit) 60%,#fff))}
+  .funrow .fv{font-family:var(--mono);font-size:15px;font-weight:600;text-align:right;}
+  .funrow.lost .fv{color:var(--crit)}
+  .funfoot{margin-top:14px;padding-top:12px;border-top:1px dashed var(--border);font-size:11.5px;color:var(--ink-3);
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .funfoot b{color:var(--ink-2)}
+
   @media (max-width:820px){
     .kpis{grid-template-columns:repeat(2,1fr)}
     .grid-main{grid-template-columns:1fr}
@@ -353,6 +376,16 @@
   <div class="sec-h" style="margin-top:30px"><h2>Aquecimento dos 500 (WhatsApp)</h2><span class="hint" id="aq-status">carregando…</span></div>
   <section id="aqgrid" class="aqgrid"></section>
   <div class="tagfoot">Cada atendente tem <b>500 contatos</b> para aquecer o chip pelo WhatsApp normal. O número vem da coluna <b>“Enviado?”</b> marcada na planilha (atualiza sozinho alguns minutos depois de marcar). O <b>“+N ontem”</b> aparece quando o histórico diário estiver ligado (ver instruções que passei no chat).</div>
+
+  <div class="sec-h" style="margin-top:30px"><h2>Funil de atendimento</h2><span class="hint">por etapa · <span id="fun-updated">—</span></span></div>
+  <div class="funcard">
+    <div class="funtop">
+      <div class="desc">Quantos contatos estão em cada etapa do funil (marcada no painel do contato, Passo 6). Escolha o qualificador para ver o funil de cada atendente.</div>
+      <label>Qualificador<select id="funsel" class="funsel"></select></label>
+    </div>
+    <div id="funrows" class="funrows"></div>
+    <div class="funfoot"><span>Fonte: Otimise → Conversas → Kanban personalizado. Atualizado sob demanda.</span><span id="fun-total"></span></div>
+  </div>
 
   <div class="sec-h" style="margin-top:30px"><h2>Contatos por tag</h2><span class="hint">base <b id="tag-total">—</b> contatos · <span id="tag-status">snapshot 05/08</span></span></div>
   <input id="tagsearch" class="tagsearch" type="search" placeholder="🔎 Buscar tag (ex.: Quente, Biguaçu, Cyntia)…" autocomplete="off">
@@ -544,11 +577,26 @@
   var grid=document.getElementById('aqgrid');
   var status=document.getElementById('aq-status');
   function gviz(sheet){return "https://docs.google.com/spreadsheets/d/"+SHEET+"/gviz/tq?tqx=out:csv&sheet="+encodeURIComponent(sheet);}
+  function parseCSVrows(text){
+    var rows=[],row=[],cur='',q=false;
+    for(var i=0;i<text.length;i++){var ch=text[i];
+      if(q){ if(ch==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=ch; }
+      else { if(ch==='"')q=true; else if(ch===','){row.push(cur);cur='';} else if(ch==='\n'){row.push(cur);rows.push(row);row=[];cur='';} else if(ch==='\r'){} else cur+=ch; }
+    }
+    if(cur!==''||row.length){row.push(cur);rows.push(row);}
+    return rows.filter(function(r){return r.length && r.join('').trim()!=='';});
+  }
   function countTab(txt){
-    var lines=txt.split(/\r?\n/), t=0, f=0;
-    for(var i=1;i<lines.length;i++){
-      var m=lines[i].match(/(?:^|,)"?(TRUE|FALSE)"?\s*$/i);
-      if(m){ if(/true/i.test(m[1])) t++; else f++; }
+    var rows=parseCSVrows(txt);
+    if(rows.length<2) return {feitos:0, total:META};
+    var hdr=rows[0].map(function(h){return (h||'').toLowerCase();});
+    var idx=-1;
+    for(var j=0;j<hdr.length;j++){ if(hdr[j].indexOf('enviado')>=0){ idx=j; break; } }
+    if(idx<0) idx=rows[0].length-1; // reserva: última coluna
+    var t=0,f=0;
+    for(var i=1;i<rows.length;i++){
+      var v=(rows[i][idx]||'').trim().toUpperCase();
+      if(v==='TRUE') t++; else if(v==='FALSE') f++;
     }
     return {feitos:t, total:(t+f)||META};
   }
@@ -594,6 +642,49 @@
     return fetch(gviz("Histórico"),{cache:'no-store'}).then(function(r){ return r.ok?r.text():""; }).catch(function(){ return ""; })
       .then(function(hist){ render(results, parseHist(hist)); });
   });
+})();
+</script>
+<script>
+(function(){
+  var STAGES=["Iniciado","Aceito","Qualificação","Agendada","Concretizada","Perdidos"];
+  var QUAL=["Todos","Andreia","Gabriel","Leony","Pedro","Miriã","Priscila"];
+  // ===== Snapshot do funil (Otimise -> Conversas -> Kanban personalizado). Atualizado sob demanda. =====
+  var FUNIL={
+    atualizado:"06/08 15:55",
+    dados:{
+      "Todos":     {Iniciado:0,Aceito:0,"Qualificação":0,Agendada:0,Concretizada:0,Perdidos:0},
+      "Andreia":   {Iniciado:0,Aceito:0,"Qualificação":0,Agendada:0,Concretizada:0,Perdidos:0},
+      "Gabriel":   {Iniciado:0,Aceito:0,"Qualificação":0,Agendada:0,Concretizada:0,Perdidos:0},
+      "Leony":     {Iniciado:0,Aceito:0,"Qualificação":0,Agendada:0,Concretizada:0,Perdidos:0},
+      "Pedro":     {Iniciado:0,Aceito:0,"Qualificação":0,Agendada:0,Concretizada:0,Perdidos:0},
+      "Miriã":     {Iniciado:0,Aceito:0,"Qualificação":0,Agendada:0,Concretizada:0,Perdidos:0},
+      "Priscila":  {Iniciado:0,Aceito:0,"Qualificação":0,Agendada:0,Concretizada:0,Perdidos:0}
+    }
+  };
+  var fmt=function(n){return n.toLocaleString('pt-BR');};
+  var sel=document.getElementById('funsel');
+  var rows=document.getElementById('funrows');
+  var upd=document.getElementById('fun-updated');
+  var tot=document.getElementById('fun-total');
+  if(!sel||!rows) return;
+  QUAL.forEach(function(q){var o=document.createElement('option');o.value=q;o.textContent=q;sel.appendChild(o);});
+  if(upd) upd.textContent='atualizado '+FUNIL.atualizado;
+  function render(q){
+    var d=FUNIL.dados[q]||{};
+    var max=Math.max.apply(null,STAGES.map(function(s){return d[s]||0;}));
+    var sum=STAGES.reduce(function(a,s){return a+(d[s]||0);},0);
+    rows.innerHTML='';
+    STAGES.forEach(function(s){
+      var n=d[s]||0, w=max>0?Math.max(2,Math.round(n/max*100)):0;
+      var cls=s==='Concretizada'?' win':(s==='Perdidos'?' lost':'');
+      var div=document.createElement('div'); div.className='funrow'+cls;
+      div.innerHTML='<div class="fn">'+s+'</div><div class="funtrack"><span style="width:'+w+'%"></span></div><div class="fv">'+fmt(n)+'</div>';
+      rows.appendChild(div);
+    });
+    if(tot) tot.innerHTML='<b>'+q+'</b>: '+fmt(sum)+' no funil';
+  }
+  render('Todos');
+  sel.addEventListener('change',function(){render(sel.value);});
 })();
 </script>
 </body>
