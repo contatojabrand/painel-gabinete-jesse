@@ -141,6 +141,32 @@
   .legend span{display:inline-flex;align-items:center;gap:5px}
   .dot{width:9px;height:9px;border-radius:3px;display:inline-block}
 
+  /* --- Contatos por tag --- */
+  .tagsearch{width:100%;max-width:340px;font:inherit;font-size:13px;padding:9px 13px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);color:var(--ink);margin-bottom:16px;}
+  .tagsearch::placeholder{color:var(--ink-3)}
+  .tagsearch:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+  .taggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;align-items:start;}
+  .taggroup{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 18px 14px;
+    box-shadow:var(--shadow);}
+  .taggroup > h3{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+    font-weight:700;margin:0 0 12px;display:flex;justify-content:space-between;align-items:baseline;}
+  .taggroup > h3 .gt{font-family:var(--mono);color:var(--ink-2);letter-spacing:0}
+  .tagrow{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;padding:7px 0;
+    border-top:1px dashed var(--border);}
+  .tagrow:first-of-type{border-top:none}
+  .tagrow .tn{font-size:12.5px;font-weight:600;line-height:1.25;}
+  .tagrow .tn small{display:block;font-weight:500;color:var(--ink-3);font-size:11px;margin-top:1px;}
+  .tagrow .tv{font-family:var(--mono);font-size:13px;font-weight:600;text-align:right;white-space:nowrap;}
+  .tagrow .tbar{grid-column:1/-1;height:5px;border-radius:4px;background:var(--surface-2);overflow:hidden;margin-top:2px;}
+  .tagrow .tbar>span{display:block;height:100%;border-radius:4px;
+    background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 62%,#fff));}
+  .tagrow.mk .tbar>span{background:linear-gradient(90deg,var(--warn),color-mix(in srgb,var(--warn) 62%,#fff))}
+  .tagrow.hot .tbar>span{background:linear-gradient(90deg,var(--crit),color-mix(in srgb,var(--crit) 62%,#fff))}
+  .tagnone{grid-column:1/-1;color:var(--ink-3);font-size:13px;padding:6px 2px;}
+  .tagfoot{margin-top:12px;font-size:11.5px;color:var(--ink-3);}
+  .tagfoot b{color:var(--ink-2)}
+
   @media (max-width:820px){
     .kpis{grid-template-columns:repeat(2,1fr)}
     .grid-main{grid-template-columns:1fr}
@@ -156,7 +182,7 @@
       <h1>Painel de Envios &amp; Saúde dos Chips</h1>
     </div>
     <div class="snap">
-      <div><span class="live-dot"></span><b>Atualizado 05/08/2026</b> · 09:37</div>
+      <div><span class="live-dot"></span><b>Atualizado 05/08/2026</b> · 23:58</div>
       <div style="margin-top:3px;color:var(--ink-3)">Mensagens: últimos 7 dias · atualizado 1×/dia</div>
     </div>
   </header>
@@ -174,13 +200,13 @@
     </div>
     <div class="kpi">
       <div class="lab">Chips ativos</div>
-      <div class="val tnum">5<span style="color:var(--ink-3);font-size:20px"> +1</span></div>
-      <div class="sub">Andreia conecta hoje</div>
+      <div class="val tnum">8</div>
+      <div class="sub">Andreia logou +3 chips</div>
     </div>
     <div class="kpi">
       <div class="lab">Capacidade recomendada</div>
-      <div class="val tnum">~140<span style="color:var(--ink-3);font-size:15px">/dia</span></div>
-      <div class="sub">5 chips × ~28/dia (aquecimento)</div>
+      <div class="val tnum">~224<span style="color:var(--ink-3);font-size:15px">/dia</span></div>
+      <div class="sub">8 chips × ~28/dia (aquecimento)</div>
     </div>
   </section>
 
@@ -258,16 +284,21 @@
       <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">Chip logado ontem. Começa os envios hoje — a lista está sendo entregue a ela na manhã de hoje.</div></div>
     </div>
 
-    <!-- Andreia (pendente) -->
-    <div class="chip pending">
-      <div class="chip-head"><div><div class="chip-name">Andreia</div><div class="chip-num">a conectar hoje</div></div><span class="pill conn">Conectando hoje</span></div>
-      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score" style="color:var(--ink-3)">— / 100</span></div><div class="hbar"><span style="width:0"></span></div></div>
-      <div class="chip-stats"><div class="st"><div class="n">—</div><div class="l">ontem</div></div><div class="st"><div class="n">—</div><div class="l">7 dias</div></div><div class="st"><div class="n">—</div><div class="l">agenda</div></div></div>
-      <div class="chip-meta">Aguardando conexão do número.</div>
-      <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">Chip será conectado hoje. Começa o envio das mensagens amanhã.</div></div>
+    <!-- Andreia (3 chips logados) -->
+    <div class="chip">
+      <div class="chip-head"><div><div class="chip-name">Andreia</div><div class="chip-num">3 chips logados · 05/08</div></div><span class="pill on">Conectado</span></div>
+      <div class="health"><div class="hl"><span>Saúde dos chips</span><span class="score zone-crit">5 / 100</span></div><div class="hbar"><span class="fill-crit" style="width:5%"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">—</div><div class="l">ontem</div></div><div class="st hot"><div class="n tnum">0</div><div class="l">7 dias</div></div><div class="st"><div class="n tnum">3</div><div class="l">chips</div></div></div>
+      <div class="chip-meta">Limite recomendado: <span class="cap">~28/dia por chip</span> · chips novos (aquecendo)</div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>05/08</span></div><div class="ot">3 chips logados para a Andreia. São novos, então começam devagar (aquecimento) e sobem aos poucos. Envios a partir de hoje.</div></div>
     </div>
 
   </section>
+
+  <div class="sec-h" style="margin-top:30px"><h2>Contatos por tag</h2><span class="hint">base <b id="tag-total">—</b> contatos · <span id="tag-status">snapshot 05/08</span></span></div>
+  <input id="tagsearch" class="tagsearch" type="search" placeholder="🔎 Buscar tag (ex.: Quente, Biguaçu, Cyntia)…" autocomplete="off">
+  <section id="taggrid" class="taggrid"></section>
+  <div class="tagfoot">Contagem tirada do Otimise (Contatos). O <b>Frio/Quente/Morno (Marcelo)</b> são leads do Dr. Marcelo; sem o “(Marcelo)” são do Jessé. Os números vêm de uma <b>planilha Google</b>: é só atualizar a planilha que este bloco se atualiza sozinho (o Otimise não tem API pública, então a planilha é alimentada por export/scrape). Se a planilha estiver fora do ar, o painel mostra o último snapshot salvo.</div>
 
   <footer class="notes">
     <div class="legend">
@@ -281,5 +312,162 @@
     <div><b>Atualização:</b> painel atualizado 1×/dia, de manhã, com o resultado do dia anterior. As observações de cada chip são renovadas diariamente pela coordenação.</div>
   </footer>
 </div>
+<script>
+(function(){
+  // Snapshot Otimise (Contatos) — 05/08/2026. Para atualizar: troque os números aqui.
+  var TOTAL = 41450;
+  var GROUPS = [
+    {g:"Temperatura", t:[
+      ["Temperatura: Quente","do Jessé",6242,""],
+      ["Temperatura: Morno","do Jessé",10983,""],
+      ["Temperatura: Quente (Marcelo)","lead do Dr. Marcelo",1976,"mk"],
+      ["Temperatura: Morno (Marcelo)","lead do Dr. Marcelo",2205,"mk"],
+      ["Temperatura: Frio (Marcelo)","lead do Dr. Marcelo",21325,"mk"]
+    ]},
+    {g:"Origem", t:[
+      ["Origem: Dr. Marcelo (SC Inteligência)","",23685,"mk"],
+      ["Origem: Cyntia","",12024,""],
+      ["Origem: Jardel","",842,""],
+      ["Origem: Ney da Padaria","",800,""],
+      ["Origem: Digão","",686,""],
+      ["Origem: Daniel Petry","",301,""],
+      ["Origem: Aline","",146,""],
+      ["Origem: Keila e Pedro (Pais Gabriel Russo)","",145,""],
+      ["Origem: Luis Fernando","",109,""],
+      ["Origem: Jaque (Gabriel Russo)","",88,""],
+      ["Origem: Salatiel","",70,""],
+      ["Origem: Eduardo","",61,""],
+      ["Origem: Eduardo da Cunha","",47,""],
+      ["Origem: Luciana","",40,""]
+    ]},
+    {g:"Região", t:[
+      ["Região: Rio do Sul","",19274,""],
+      ["Região: A definir","",12064,""],
+      ["Região: Florianópolis","",2519,""],
+      ["Região: Biguaçu","",1188,""],
+      ["Região: Palhoça","",918,""],
+      ["Região: Joinville","",687,""],
+      ["Região: Chapecó","",275,""],
+      ["Região: São José","",178,""],
+      ["Região: Lages","",152,""],
+      ["Região: Criciúma","",89,""],
+      ["Região: Blumenau","",86,""],
+      ["Região: Jaraguá do Sul","",80,""],
+      ["Região: Itajaí","",72,""],
+      ["Região: Tubarão","",51,""]
+    ]},
+    {g:"Classificação / grupos", t:[
+      ["Eleitor 5RS","pacientes de Rio do Sul",19251,"mk"],
+      ["Eleitor 4C","agenda pessoal do Dr. Marcelo",2205,"mk"],
+      ["Eleitor 2","institucional, sem autorização",2074,"mk"],
+      ["Assistidas","",1821,"mk"],
+      ["Grupo: Amigos do CIDADE!!!","",218,""],
+      ["Grupo: Amigos do Cidade 2025","",111,""],
+      ["Apoiador (referência)","",101,""]
+    ]}
+  ];
+  // ===== FONTE AO VIVO (opção B) =====
+  // Cole o link "Publicar na web -> CSV" da planilha Google (Arquivo > Compartilhar > Publicar na web).
+  // Enquanto estiver vazio, o painel usa o snapshot embutido acima.
+  var SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyfKtwtt-D4lQltNqCIjoHGnrqrGc3LCgfl5ENsJSanAgGBuPazOT0LMJlqCvqPdoaKhZW8n1U8WUa/pub?gid=1264228360&single=true&output=csv";
+
+  var fmt = function(n){ return n.toLocaleString('pt-BR'); };
+  var norm = function(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); };
+  var grid = document.getElementById('taggrid');
+  var search = document.getElementById('tagsearch');
+  var elTotal = document.getElementById('tag-total');
+  var elStatus = document.getElementById('tag-status');
+
+  function render(q){
+    q = norm((q||'').trim());
+    if(elTotal) elTotal.textContent = fmt(TOTAL);
+    grid.innerHTML = '';
+    var any = false;
+    GROUPS.forEach(function(grp){
+      var rows = grp.t.filter(function(r){ return !q || norm(r[0]).indexOf(q)>=0 || norm(r[1]).indexOf(q)>=0; });
+      if(!rows.length) return;
+      any = true;
+      var max = Math.max.apply(null, rows.map(function(r){return r[2];})) || 1;
+      var sum = grp.t.reduce(function(a,r){return a+r[2];},0);
+      var box = document.createElement('div'); box.className = 'taggroup';
+      var html = '<h3>'+esc(grp.g)+'<span class="gt">'+fmt(sum)+'</span></h3>';
+      rows.forEach(function(r){
+        var name=r[0], sub=r[1], n=r[2], cls=r[3]||'';
+        var w = Math.max(2, Math.round(n/max*100));
+        html += '<div class="tagrow '+cls+'">'
+             +  '<div class="tn">'+esc(name)+(sub?'<small>'+esc(sub)+'</small>':'')+'</div>'
+             +  '<div class="tv">'+fmt(n)+'</div>'
+             +  '<div class="tbar"><span style="width:'+w+'%"></span></div>'
+             +  '</div>';
+      });
+      box.innerHTML = html;
+      grid.appendChild(box);
+    });
+    if(!any){ grid.innerHTML = '<div class="tagnone">Nenhuma tag encontrada para “'+ esc(q||'') +'”.</div>'; }
+  }
+
+  // --- CSV -> dados ---
+  function parseCSV(text){
+    var rows=[], row=[], cur='', inQ=false;
+    for(var i=0;i<text.length;i++){
+      var ch=text[i];
+      if(inQ){
+        if(ch==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else {inQ=false;} }
+        else cur+=ch;
+      } else {
+        if(ch==='"') inQ=true;
+        else if(ch===','){ row.push(cur); cur=''; }
+        else if(ch==='\n'){ row.push(cur); rows.push(row); row=[]; cur=''; }
+        else if(ch==='\r'){ /* ignora */ }
+        else cur+=ch;
+      }
+    }
+    if(cur!==''||row.length){ row.push(cur); rows.push(row); }
+    return rows;
+  }
+  function toInt(v){ var d=String(v||'').replace(/[^\d]/g,''); return d?parseInt(d,10):0; }
+  function buildFromCSV(text){
+    var rows=parseCSV(text).filter(function(r){ return r.length && r.join('').trim()!==''; });
+    if(!rows.length) throw new Error('vazio');
+    if(rows[0][0] && norm(rows[0][0]).indexOf('grupo')>=0) rows=rows.slice(1); // pula cabecalho
+    var groups=[], byName={}, total=null, atualizado=null;
+    rows.forEach(function(r){
+      var grupo=(r[0]||'').trim(), tag=(r[1]||'').trim(), sub=(r[2]||'').trim(), cont=r[3], cor=(r[4]||'').trim();
+      if(!grupo) return;
+      if(grupo==='_meta'){
+        if(norm(tag)==='total') total=toInt(cont||sub);
+        else if(norm(tag).indexOf('atualiz')>=0) atualizado=(sub||cont||'').trim();
+        return;
+      }
+      if(!tag) return;
+      if(!cor && /marcelo/i.test(tag+' '+sub)) cor='mk';
+      if(!byName[grupo]){ byName[grupo]={g:grupo,t:[]}; groups.push(byName[grupo]); }
+      byName[grupo].t.push([tag, sub, toInt(cont), cor]);
+    });
+    if(!groups.length) throw new Error('sem grupos');
+    return {groups:groups, total:total, atualizado:atualizado};
+  }
+
+  render('');
+  if(search) search.addEventListener('input', function(){ render(search.value); });
+
+  if(SHEET_CSV_URL){
+    fetch(SHEET_CSV_URL, {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+      .then(function(txt){
+        var d=buildFromCSV(txt);
+        GROUPS=d.groups;
+        if(d.total) TOTAL=d.total;
+        if(elStatus) elStatus.innerHTML='<span style="color:var(--good)">●</span> ao vivo'+(d.atualizado?' · atualizado '+esc(d.atualizado):'');
+        render(search?search.value:'');
+      })
+      .catch(function(){
+        if(elStatus) elStatus.textContent='snapshot 05/08 (planilha indisponivel)';
+      });
+  }
+})();
+
+</script>
 </body>
 </html>
