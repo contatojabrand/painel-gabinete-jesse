@@ -112,6 +112,7 @@
     padding:4px 9px;border-radius:999px;white-space:nowrap;}
   .pill.on{background:var(--good-bg);color:var(--good);}
   .pill.conn{background:var(--warn-bg);color:var(--warn);}
+  .pill.off{background:var(--crit-bg);color:var(--crit);}
   .health .hl{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;
     text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600;margin-bottom:6px;}
   .health .score{font-family:var(--mono);font-size:13px;font-weight:600;}
@@ -234,7 +235,7 @@
       <h1>Painel de Envios &amp; Saúde dos Chips</h1>
     </div>
     <div class="snap">
-      <div><span class="live-dot"></span><b>Atualizado 07/08/2026</b> · 05:20</div>
+      <div><span class="live-dot"></span><b>Atualizado 08/08/2026</b> · 10:45</div>
       <div style="margin-top:3px;color:var(--ink-3)">Mensagens: últimos 7 dias · atualizado 1×/dia</div>
     </div>
   </header>
@@ -250,7 +251,7 @@
     <div class="kpi accent">
       <div class="lab">Enviadas ontem</div>
       <div class="val tnum">136</div>
-      <div class="sub">06/08 · todos os chips</div>
+      <div class="sub">06/08 · Otimise instável hoje</div>
     </div>
     <div class="kpi">
       <div class="lab">Acumulado (7 dias)</div>
@@ -259,13 +260,13 @@
     </div>
     <div class="kpi">
       <div class="lab">Chips ativos</div>
-      <div class="val tnum">10</div>
-      <div class="sub">Gabriel logou +2 chips</div>
+      <div class="val tnum">9<span style="color:var(--ink-3);font-size:20px"> /11</span></div>
+      <div class="sub">2 caíram: Priscila e Miriã</div>
     </div>
     <div class="kpi">
       <div class="lab">Capacidade recomendada</div>
-      <div class="val tnum">~280<span style="color:var(--ink-3);font-size:15px">/dia</span></div>
-      <div class="sub">10 chips × ~28/dia (aquecimento)</div>
+      <div class="val tnum">~252<span style="color:var(--ink-3);font-size:15px">/dia</span></div>
+      <div class="sub">9 chips ativos × ~28/dia</div>
     </div>
   </section>
 
@@ -286,12 +287,13 @@
     </section>
 
     <section class="card">
-      <div class="sec-h"><h2>Resumo do dia</h2><span class="hint">07/08</span></div>
+      <div class="sec-h"><h2>Resumo do dia</h2><span class="hint">08/08</span></div>
       <div class="alerts">
-        <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">✅ 136 enviadas ontem (06/08)</span>Subiu de 92 pra 136. Destaques: <b>Pri 76</b>, <b>Gabriel 41</b>, <b>Andreia 15</b>, <b>Leony 3</b>.</div></div>
-        <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">Gabriel · +2 chips</span>Gabriel logou mais 2 chips (Nº 2 e Nº 3), agora são <b>10 no gabinete</b>. Novos, entram em aquecimento.</div></div>
-        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Funil começou</span><b>9 contatos</b> em "Iniciado". Lembrar a equipe de marcar a etapa no funil (Passo 6) conforme trabalham o contato.</div></div>
-        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Aquecimento dos chips</span>Saúde ainda baixa (7–22/100). Manter <b>~28 msgs/dia por chip</b> e subir aos poucos.</div></div>
+        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Priscila · número caiu</span>O número novo dela (Campanha 3) foi <b>restringido logo após a 1ª mensagem</b>. Reforçar aquecimento bem gradual em número novo.</div></div>
+        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Miriã · número restringido</span>Chip dela <b>desconectado</b> (restrição do WhatsApp). Vai cuidar dos contatos do <b>Dr. Marcelo (a partir de 15/08)</b>; por ora, aquecendo o chip.</div></div>
+        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Contatos esgotados</span><b>Gabriel</b> e <b>Priscila</b> já esgotaram os contatos dos grupos do Jessé. Pendência: alinhar reposição com o <b>Eduardo</b>. Quem ainda tem lista, continua até esgotar.</div></div>
+        <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">Aquecimento andando</span><b>Priscila 49</b> e <b>Miriã 13</b> já marcando na planilha. Os demais precisam começar.</div></div>
+        <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">⚠️ Otimise instável hoje</span>A tela de Métricas/Kanban do Otimise não carregou hoje. Os números de <b>envios e funil</b> ficam do último dado (06/08) e atualizam assim que o sistema voltar.</div></div>
       </div>
     </section>
   </div>
@@ -340,11 +342,11 @@
     </div>
 
     <div class="chip">
-      <div class="chip-head"><div><div class="chip-name">Miriã</div><div class="chip-num">+55 48 ••••-4508 · criado 29/07</div></div><span class="pill on">Conectado</span></div>
+      <div class="chip-head"><div><div class="chip-name">Miriã</div><div class="chip-num">+55 48 ••••-4508 · desconectado</div></div><span class="pill off">Desconectado</span></div>
       <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-warn">22 / 100</span></div><div class="hbar"><span class="fill-warn" style="width:22%"></span></div></div>
       <div class="chip-stats"><div class="st hot"><div class="n tnum">1</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">9</div><div class="l">7 dias</div></div></div>
       <div class="chip-meta">Meta do dia = limite: <span class="cap">~28/dia</span> · foto ✓ · bio ✓</div>
-      <div class="obs"><div class="oh"><span>📝 Observação</span><span>07/08</span></div><div class="ot">1 envio ontem. Precisa subir o volume (~28/dia).</div></div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>07/08</span></div><div class="ot">Chip restringido (desconectado). Vai cuidar dos contatos do Dr. Marcelo a partir de 15/08; por ora, aquecendo o chip (já 13/500 na planilha).</div></div>
     </div>
 
     <div class="chip">
@@ -377,6 +379,15 @@
       <div class="chip-stats"><div class="st"><div class="n tnum">0</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">0</div><div class="l">7 dias</div></div></div>
       <div class="chip-meta">Meta do dia = limite: <span class="cap">~28/dia</span> · chip novo (aquecendo)</div>
       <div class="obs"><div class="oh"><span>📝 Observação</span><span>07/08</span></div><div class="ot">Chip novo do Gabriel, logado hoje. Em aquecimento; sem métrica ainda.</div></div>
+    </div>
+
+
+    <div class="chip">
+      <div class="chip-head"><div><div class="chip-name">Priscila 2</div><div class="chip-num">Campanha 3 · logado 07/08</div></div><span class="pill off">Desconectado</span></div>
+      <div class="health"><div class="hl"><span>Saúde do chip</span><span class="score zone-crit">caiu</span></div><div class="hbar"><span class="fill-crit" style="width:0"></span></div></div>
+      <div class="chip-stats"><div class="st"><div class="n tnum">0</div><div class="l">ontem</div></div><div class="st"><div class="n tnum">0</div><div class="l">7 dias</div></div></div>
+      <div class="chip-meta">Número novo · <span class="cap">restringido</span> após a 1ª mensagem</div>
+      <div class="obs"><div class="oh"><span>📝 Observação</span><span>08/08</span></div><div class="ot">Número novo da Priscila. Caiu logo após a primeira mensagem. Quando religar, aquecer bem devagar (poucas por vez).</div></div>
     </div>
 
   </section>
