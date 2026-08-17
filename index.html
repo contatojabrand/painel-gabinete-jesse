@@ -168,7 +168,40 @@
   .tagfoot{margin-top:12px;font-size:11.5px;color:var(--ink-3);}
   .tagfoot b{color:var(--ink-2)}
 
-  /* --- Aquecimento dos 500 --- */
+
+  /* --- Agendamentos de visita --- */
+  .agwrap{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;}
+  .agkpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-bottom:1px solid var(--border);}
+  .agk{padding:14px 16px;border-right:1px solid var(--border);}
+  .agk:last-child{border-right:none}
+  .agk .l{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+  .agk .v{font-size:30px;font-weight:800;line-height:1.05;margin-top:4px;font-variant-numeric:tabular-nums}
+  .agk .s{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+  .agk.hot .v{color:var(--accent)}
+  .agk.win .v{color:var(--good)}
+  .agbody{padding:16px}
+  .agtable{width:100%;border-collapse:collapse}
+  .agtable th{text-align:left;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:0 8px 8px 0;border-bottom:1px solid var(--border);white-space:nowrap}
+  .agtable th.num,.agtable td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .agtable td{padding:9px 8px 9px 0;border-bottom:1px solid var(--border);font-size:14px}
+  .agtable tr:last-child td{border-bottom:none}
+  .agtable tr.tot td{font-weight:800;background:var(--surface-2)}
+  .agname{display:flex;align-items:center;gap:9px;font-weight:600}
+  .agbar{flex:1;min-width:44px;height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+  .agbar span{display:block;height:100%;background:var(--accent);border-radius:99px}
+  .agtd-hoje{font-weight:800;font-size:16px}
+  .agtd-hoje.zero{color:var(--ink-3);font-weight:600}
+  .agfoot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border);background:var(--surface-2);font-size:12px;color:var(--ink-3)}
+  .agbtn{border:1px solid var(--accent);background:transparent;color:var(--accent);font:inherit;font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:8px;cursor:pointer}
+  .agbtn:hover{background:var(--accent);color:#fff}
+  .agbtn.ok{border-color:var(--good);color:var(--good);background:transparent}
+  .agass{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border)}
+  .agass .t{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700;width:100%;margin-bottom:2px}
+  .agchip{border:1px solid var(--border);border-radius:99px;padding:4px 11px;font-size:12.5px;background:var(--bg)}
+  .agchip b{font-variant-numeric:tabular-nums}
+  .agmsg{padding:22px 16px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+  /* --- legado (nao usado) --- */
   .aqgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
   .aqcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 17px;
     box-shadow:var(--shadow);}
@@ -235,16 +268,16 @@
       <h1>Painel de Envios &amp; Saúde dos Chips</h1>
     </div>
     <div class="snap">
-      <div><span class="live-dot"></span><b>Atualizado 11/08/2026</b> · 08:50</div>
-      <div style="margin-top:3px;color:var(--ink-3)">Mensagens: últimos 7 dias · atualizado 1×/dia</div>
+      <div><span class="live-dot"></span><b>Atualizado 17/08/2026</b></div>
+      <div style="margin-top:3px;color:var(--ink-3)">Agendamentos ao vivo · dados de chip do dia 11/08</div>
     </div>
   </header>
 
   <nav class="hub">
-    <a href="https://drive.google.com/drive/folders/1_RkBkHJi7TM40rvy1jyQSMcUzZb_ykvV" target="_blank" rel="noopener"><span class="ico">📄</span> Manuais <span class="sub">Drive</span></a>
-    <a href="https://gab.otimise.com.br" target="_blank" rel="noopener"><span class="ico">🖥️</span> Otimise</a>
-    <a href="https://docs.google.com/spreadsheets/d/1ysuWWFNG7A2Xu9BfxGLoczQdym81gBPrPhHZPxNpQjI/edit" target="_blank" rel="noopener"><span class="ico">📊</span> Planilha dos 500</a>
-    <a href="https://drive.google.com/drive/folders/1_RkBkHJi7TM40rvy1jyQSMcUzZb_ykvV" target="_blank" rel="noopener"><span class="ico">📁</span> Materiais <span class="sub">Drive · artes</span></a>
+    <a href="https://gab.otimise.com.br" target="_blank" rel="noopener"><span class="ico">&#128421;</span> Otimise <span class="sub">CRM</span></a>
+    <a href="roteiro.html"><span class="ico">&#128172;</span> Roteiro de atendimento <span class="sub">o que mandar em cada passo</span></a>
+    <a href="https://drive.google.com/drive/folders/1osi2_aIgvCiFxk1bEWBO_sWdEIYvxsHF" target="_blank" rel="noopener"><span class="ico">&#128193;</span> Materiais para encaminhar <span class="sub">Drive</span></a>
+    <a href="https://docs.google.com/spreadsheets/d/16eBCynfOTc0Z_pW-RdKrdubGTEA8JIc-/edit" target="_blank" rel="noopener"><span class="ico">&#128197;</span> Agenda de visitas <span class="sub">planilha</span></a>
   </nav>
 
   <section class="kpis">
@@ -290,13 +323,22 @@
       <div class="sec-h"><h2>Resumo do dia</h2><span class="hint">11/08</span></div>
       <div class="alerts">
         <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">Funil começou a girar</span>Ontem (10/08) foram <b>58 envios</b> (Pedro 29, Pri 25). E o funil evoluiu: <b>24 iniciados, 1 aceito e a 1ª concretizada</b> 🎉 — a operação passou a gerar resultado, não só disparo.</div></div>
-        <div class="alert good"><div class="tag"></div><div class="txt"><span class="who">Aquecimento decolou</span>Total <b>193/3.000</b> na planilha. <b>Miriã 68</b>, <b>Gabriel 51</b>, <b>Priscila 49</b>, <b>Pedro 23</b>, Andreia 2. Só o <b>Leony</b> ainda está em <b>0</b> — precisa começar.</div></div>
         <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Mais um número caiu</span>O <b>Gabriel Nº2</b> desconectou — agora são <b>8/11</b> ativos (com Miriã e Priscila Campanha 3, que já estavam fora). Números novos aquecem devagar.</div></div>
         <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Contatos esgotados</span><b>Gabriel</b> e <b>Priscila</b> esgotaram os contatos dos grupos do Jessé. Pendência: alinhar reposição com o <b>Eduardo</b>. Quem ainda tem lista, continua até esgotar.</div></div>
         <div class="alert warn"><div class="tag"></div><div class="txt"><span class="who">Miriã · Dr. Marcelo</span>Chip <b>desconectado</b>, mas foi quem <b>mais aqueceu</b> (68/500). Assume os contatos do <b>Dr. Marcelo a partir de 15/08</b>.</div></div>
       </div>
     </section>
   </div>
+
+  <div class="sec-h" style="margin-top:26px"><h2>Agendamentos de visita</h2><span class="hint" id="ag-status">carregando planilha&hellip;</span></div>
+  <section class="agwrap">
+    <div class="agkpis" id="agkpis"></div>
+    <div class="agbody" id="agbody"><div class="agmsg">lendo a agenda&hellip;</div></div>
+    <div class="agfoot">
+      <span>Fonte: planilha <b>Agenda de Visitas</b>, coluna &ldquo;Agendado em&rdquo; &middot; atualiza a cada carregamento</span>
+      <button class="agbtn" id="agcopy" type="button">Copiar relat&oacute;rio do dia</button>
+    </div>
+  </section>
 
   <div class="sec-h" style="margin-top:26px"><h2>Saúde dos chips &amp; observações</h2><span class="hint">score /100 · capacidade diária · nota do dia</span></div>
   <section class="chips">
@@ -391,10 +433,6 @@
     </div>
 
   </section>
-
-  <div class="sec-h" style="margin-top:30px"><h2>Aquecimento dos 500 (WhatsApp)</h2><span class="hint" id="aq-status">carregando…</span></div>
-  <section id="aqgrid" class="aqgrid"></section>
-  <div class="tagfoot">Cada atendente tem <b>500 contatos</b> para aquecer o chip pelo WhatsApp normal. O número vem da coluna <b>“Enviado?”</b> marcada na planilha (atualiza sozinho alguns minutos depois de marcar). O <b>“+N ontem”</b> aparece quando o histórico diário estiver ligado (ver instruções que passei no chat).</div>
 
   <div class="sec-h" style="margin-top:30px"><h2>Funil de atendimento</h2><span class="hint">por etapa · <span id="fun-updated">—</span></span></div>
   <div class="funcard">
@@ -582,89 +620,6 @@
 </script>
 <script>
 (function(){
-  var SHEET="1ysuWWFNG7A2Xu9BfxGLoczQdym81gBPrPhHZPxNpQjI";
-  var ATEND=[
-    {n:"Andreia", reg:"Biguaçu"},
-    {n:"Gabriel", reg:"Palhoça"},
-    {n:"Leony", reg:"quentes gerais"},
-    {n:"Pedro", reg:"quentes gerais"},
-    {n:"Miriã", reg:"quentes gerais"},
-    {n:"Priscila", reg:"quentes gerais"}
-  ];
-  var META=500;      // total por atendente
-  var META_DIA=50;   // meta diária de checks
-  var grid=document.getElementById('aqgrid');
-  var status=document.getElementById('aq-status');
-  function gviz(sheet){return "https://docs.google.com/spreadsheets/d/"+SHEET+"/gviz/tq?tqx=out:csv&sheet="+encodeURIComponent(sheet);}
-  function parseCSVrows(text){
-    var rows=[],row=[],cur='',q=false;
-    for(var i=0;i<text.length;i++){var ch=text[i];
-      if(q){ if(ch==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=ch; }
-      else { if(ch==='"')q=true; else if(ch===','){row.push(cur);cur='';} else if(ch==='\n'){row.push(cur);rows.push(row);row=[];cur='';} else if(ch==='\r'){} else cur+=ch; }
-    }
-    if(cur!==''||row.length){row.push(cur);rows.push(row);}
-    return rows.filter(function(r){return r.length && r.join('').trim()!=='';});
-  }
-  function countTab(txt){
-    var rows=parseCSVrows(txt);
-    if(rows.length<2) return {feitos:0, total:META};
-    var hdr=rows[0].map(function(h){return (h||'').toLowerCase();});
-    var idx=-1;
-    for(var j=0;j<hdr.length;j++){ if(hdr[j].indexOf('enviado')>=0){ idx=j; break; } }
-    if(idx<0) idx=rows[0].length-1; // reserva: última coluna
-    var t=0,f=0;
-    for(var i=1;i<rows.length;i++){
-      var v=(rows[i][idx]||'').trim().toUpperCase();
-      if(v==='TRUE') t++; else if(v==='FALSE') f++;
-    }
-    return {feitos:t, total:(t+f)||META};
-  }
-  function parseHist(txt){
-    if(!txt || /<!?html|DOCTYPE|<table/i.test(txt.slice(0,300))) return {};
-    var lines=txt.trim().split(/\r?\n/);
-    if(lines.length<3) return {};
-    function cells(l){return l.split(',').map(function(c){return c.replace(/^"|"$/g,'').trim();});}
-    var head=cells(lines[0]), last=cells(lines[lines.length-1]), prev=cells(lines[lines.length-2]);
-    var out={};
-    for(var i=1;i<head.length;i++){
-      var a=(parseInt((last[i]||'').replace(/\D/g,''),10)||0), b=(parseInt((prev[i]||'').replace(/\D/g,''),10)||0);
-      out[head[i]]=a-b;
-    }
-    return out;
-  }
-  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-
-  function render(results, deltas){
-    grid.innerHTML='';
-    var totFeitos=0, totMeta=0, oks=0;
-    results.forEach(function(r){
-      var a=r.a, total=r.total||META, feitos=r.feitos;
-      if(feitos!==null){oks++; totFeitos+=feitos; totMeta+=total;}
-      var f=feitos===null?0:feitos, pct=total?Math.round(f/total*100):0;
-      var d=deltas[a.n], dHtml=(typeof d==='number')?'<span class="aqdelta'+(d>=META_DIA?'':(d>0?' warn':' zero'))+'">'+d+' / '+META_DIA+' ontem</span>':'';
-      var box=document.createElement('div'); box.className='aqcard'+(feitos!==null&&f>=total?' done':'');
-      box.innerHTML='<div class="aqhead"><div><div class="aqname">'+esc(a.n)+'</div><div class="aqreg">'+esc(a.reg)+'</div></div>'+dHtml+'</div>'
-        +'<div class="aqval">'+(feitos===null?'?':f)+'<small> / '+total+'</small>'+(feitos===null?'':'<span class="pct">'+pct+'%</span>')+'</div>'
-        +'<div class="aqtrack"><span style="width:'+pct+'%"></span></div>'
-        +'<div class="aqmeta">meta <b>'+META_DIA+'</b>/dia'+(feitos===null?'':' · faltam '+(total-f)+' de '+total)+'</div>';
-      grid.appendChild(box);
-    });
-    if(!oks){ status.textContent='planilha indisponível'; }
-    else { status.innerHTML='<span style="color:var(--good)">●</span> ao vivo · '+totFeitos+' / '+totMeta+' checks'; }
-  }
-
-  Promise.all(ATEND.map(function(a){
-    return fetch(gviz(a.n),{cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.text(); })
-      .then(function(txt){ var c=countTab(txt); return {a:a, feitos:c.feitos, total:c.total}; })
-      .catch(function(){ return {a:a, feitos:null, total:META}; });
-  })).then(function(results){
-    return fetch(gviz("Histórico"),{cache:'no-store'}).then(function(r){ return r.ok?r.text():""; }).catch(function(){ return ""; })
-      .then(function(hist){ render(results, parseHist(hist)); });
-  });
-})();
-</script>
-<script>
-(function(){
   var STAGES=["Iniciado","Aceito","Qualificação","Agendada","Concretizada","Perdidos"];
   var QUAL=["Todos","Andreia","Gabriel","Leony","Pedro","Miriã","Priscila"];
   // ===== Snapshot do funil (Otimise -> Conversas -> Kanban personalizado). Atualizado sob demanda. =====
@@ -706,5 +661,158 @@
   sel.addEventListener('change',function(){render(sel.value);});
 })();
 </script>
+<script>
+/* ===== Agendamentos de visita: le a planilha Agenda de Visitas ao vivo ===== */
+(function(){
+  var SID  = "16eBCynfOTc0Z_pW-RdKrdubGTEA8JIc-";
+  var TABS = ["Marcelo (Ilha)","Salatiel (Continente)","Sandra (São José)","Vitor (Biguaçu)",
+              "Bruno (Palhoça)","Jean (Tijucas)","SJB-NT-MG (a definir)","Luiz (Interior)","Eduardo (moto)"];
+  var QUAL = ["Andreia","Gabriel","Miriã","Priscila","Pedro"];
+  var QUERY = "select A,E,H,I,P,Q where H <> 'Livre'";
+
+  var elStatus = document.getElementById('ag-status');
+  var elKpis   = document.getElementById('agkpis');
+  var elBody   = document.getElementById('agbody');
+  var elCopy   = document.getElementById('agcopy');
+  if(!elBody) return;
+
+  function url(tab){
+    return "https://docs.google.com/spreadsheets/d/"+SID+"/gviz/tq?tqx=out:csv"
+         + "&sheet="+encodeURIComponent(tab)+"&tq="+encodeURIComponent(QUERY);
+  }
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function parseCSV(text){
+    var rows=[],row=[],cur='',q=false;
+    for(var i=0;i<text.length;i++){var ch=text[i];
+      if(q){ if(ch==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=ch; }
+      else { if(ch==='"')q=true; else if(ch===','){row.push(cur);cur='';}
+             else if(ch==='\n'){row.push(cur);rows.push(row);row=[];cur='';}
+             else if(ch!=='\r') cur+=ch; }
+    }
+    if(cur!==''||row.length){row.push(cur);rows.push(row);}
+    return rows.filter(function(r){return r.length>1;});
+  }
+  function hojeStr(){
+    var d=new Date(), p=function(n){return (n<10?'0':'')+n;};
+    return p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear();
+  }
+  function dm(s){ return (s||'').slice(0,5); }
+
+  Promise.all(TABS.map(function(t){
+    return fetch(url(t),{cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw 0; return r.text(); })
+      .then(function(txt){ return {tab:t, rows:parseCSV(txt).slice(1)}; })
+      .catch(function(){ return {tab:t, rows:null}; });
+  })).then(function(res){
+
+    var falhas = res.filter(function(r){return r.rows===null;}).length;
+    if(falhas === TABS.length){
+      if(elStatus) elStatus.textContent = 'planilha indisponivel';
+      elBody.innerHTML = '<div class="agmsg">Nao consegui ler a planilha. Confira se ela esta compartilhada como <b>"qualquer pessoa com o link pode ver"</b>.</div>';
+      return;
+    }
+
+    var HOJE = hojeStr();
+    var porQual = {}, porAss = {}, datas = {};
+    QUAL.forEach(function(q){ porQual[q]={hoje:0,total:0,realizadas:0,confirmadas:0}; });
+    var outros = {hoje:0,total:0,realizadas:0,confirmadas:0}, temOutros=false;
+    var totalGeral=0, hojeGeral=0, realGeral=0, confGeral=0;
+
+    res.forEach(function(r){
+      if(!r.rows) return;
+      r.rows.forEach(function(c){
+        var data=(c[0]||'').trim(), ass=(c[1]||'').trim(), st=(c[2]||'').trim(),
+            nome=(c[3]||'').trim(), qual=(c[4]||'').trim(), agEm=(c[5]||'').trim();
+        if(!st || st==='Livre') return;
+        if(qual.toUpperCase()==='EXEMPLO' || nome.indexOf('(EXEMPLO)')===0) return;
+
+        var alvo = porQual[qual];
+        if(!alvo){ alvo = outros; temOutros = true; }
+        alvo.total++; totalGeral++;
+        if(agEm===HOJE){ alvo.hoje++; hojeGeral++; }
+        if(st==='Realizado'){ alvo.realizadas++; realGeral++; }
+        if(st==='Confirmado'){ alvo.confirmadas++; confGeral++; }
+        if(ass) porAss[ass] = (porAss[ass]||0)+1;
+        if(data) datas[data] = (datas[data]||0)+1;
+      });
+    });
+
+    var chave = function(d){ var x=d.split('/'); return x[2]+x[1]+x[0]; };
+    var ordenadas = Object.keys(datas).sort(function(a,b){ return chave(a)<chave(b)?-1:1; });
+    var prox = ordenadas.length ? ordenadas[0] : null;
+
+    elKpis.innerHTML =
+      '<div class="agk hot"><div class="l">Agendados hoje</div><div class="v">'+hojeGeral+'</div><div class="s">'+dm(HOJE)+' &middot; equipe toda</div></div>'+
+      '<div class="agk"><div class="l">Na agenda</div><div class="v">'+totalGeral+'</div><div class="s">visitas marcadas no total</div></div>'+
+      '<div class="agk win"><div class="l">Ja realizadas</div><div class="v">'+realGeral+'</div><div class="s">status Realizado</div></div>'+
+      '<div class="agk"><div class="l">Proxima data</div><div class="v" style="font-size:22px;padding-top:6px">'+(prox?dm(prox):'&mdash;')+'</div><div class="s">'+(prox?(datas[prox]+' visita'+(datas[prox]>1?'s':'')):'nenhuma marcada')+'</div></div>';
+
+    var lista = QUAL.map(function(q){ return {n:q, d:porQual[q]}; });
+    if(temOutros) lista.push({n:'Sem qualificador', d:outros});
+    var maxTot = Math.max(1, Math.max.apply(null, lista.map(function(x){return x.d.total;})));
+
+    var html = '<table class="agtable"><thead><tr>'+
+      '<th style="width:44%">Qualificador</th><th class="num">Hoje</th><th class="num">Na agenda</th>'+
+      '<th class="num">Confirm.</th><th class="num">Realiz.</th></tr></thead><tbody>';
+    lista.forEach(function(x){
+      var w = Math.round(x.d.total/maxTot*100);
+      html += '<tr><td><div class="agname"><span style="min-width:78px">'+esc(x.n)+'</span>'+
+              '<span class="agbar"><span style="width:'+w+'%"></span></span></div></td>'+
+              '<td class="num agtd-hoje'+(x.d.hoje?'':' zero')+'">'+x.d.hoje+'</td>'+
+              '<td class="num">'+x.d.total+'</td>'+
+              '<td class="num">'+x.d.confirmadas+'</td>'+
+              '<td class="num">'+x.d.realizadas+'</td></tr>';
+    });
+    html += '<tr class="tot"><td>Total</td><td class="num">'+hojeGeral+'</td><td class="num">'+totalGeral+
+            '</td><td class="num">'+confGeral+'</td><td class="num">'+realGeral+'</td></tr></tbody></table>';
+
+    var assNomes = Object.keys(porAss).sort(function(a,b){return porAss[b]-porAss[a];});
+    if(assNomes.length){
+      html += '<div class="agass"><span class="t">Visitas por assessor externo</span>';
+      assNomes.forEach(function(a){ html += '<span class="agchip"><b>'+porAss[a]+'</b> &middot; '+esc(a)+'</span>'; });
+      html += '</div>';
+    }
+    elBody.innerHTML = html;
+    if(elStatus) elStatus.innerHTML = '<span style="color:var(--good)">&#9679;</span> ao vivo'+(falhas?' &middot; '+falhas+' aba(s) sem leitura':'');
+
+    function relatorio(){
+      var L = [];
+      L.push('AGENDAMENTOS DE VISITA - '+dm(HOJE));
+      L.push('');
+      L.push('Agendados hoje: '+hojeGeral);
+      L.push('');
+      lista.slice().sort(function(a,b){return (b.d.hoje-a.d.hoje) || (b.d.total-a.d.total);}).forEach(function(x){
+        L.push('- '+x.n+': '+x.d.hoje+'  (na agenda: '+x.d.total+')');
+      });
+      L.push('');
+      L.push('Total na agenda: '+totalGeral+' visita'+(totalGeral===1?'':'s'));
+      L.push('Ja realizadas: '+realGeral);
+      if(prox) L.push('Proxima data de campo: '+dm(prox)+' ('+datas[prox]+' visita'+(datas[prox]>1?'s':'')+')');
+      if(assNomes.length){
+        L.push('');
+        L.push('Por assessor: '+assNomes.map(function(a){return a+' '+porAss[a];}).join(' | '));
+      }
+      return L.join('\n');
+    }
+    function fb(txt,done){
+      var ta=document.createElement('textarea'); ta.value=txt;
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    if(elCopy) elCopy.addEventListener('click', function(){
+      var txt = relatorio(), done = function(){
+        elCopy.textContent='Copiado'; elCopy.classList.add('ok');
+        setTimeout(function(){ elCopy.innerHTML='Copiar relat&oacute;rio do dia'; elCopy.classList.remove('ok'); },1600);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done, function(){ fb(txt,done); });
+      } else fb(txt,done);
+    });
+  });
+})();
+</script>
 </body>
+
 </html>

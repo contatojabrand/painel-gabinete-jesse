@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro de Atendimento Jessé Lopes</title>
+<meta name="description" content="Fluxo do atendimento por WhatsApp da campanha: o que é mensagem automática, o que você escreve, e o texto de cada passo.">
+<style>
+  :root{
+    --ground:#F2F3F0; --surface:#FFFFFF; --surface-2:#E9EBE6;
+    --ink:#15171B; --ink-2:#4E545C; --ink-3:#7B818A; --line:#D6D9D3;
+    --auto:#4B44A8;   --auto-bg:#ECEBF8;
+    --manual:#9A5B0A; --manual-bg:#FAEFDF;
+    --good:#1B6D46;   --good-bg:#E3EFE9;
+    --bad:#A4382A;    --bad-bg:#F8E8E5;
+    --mid:#0E6877;    --mid-bg:#E2EEF1;
+    --warn:#8A5A00;   --warn-bg:#FBF1DA;
+    --shadow:0 1px 2px rgba(20,25,20,.06), 0 6px 18px -8px rgba(20,25,20,.16);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#111316; --surface:#1A1D21; --surface-2:#23272C;
+      --ink:#E9EBED; --ink-2:#A9B0B8; --ink-3:#7D858F; --line:#2D3238;
+      --auto:#A9A1F6;   --auto-bg:#24214A;
+      --manual:#E5AB55; --manual-bg:#3B2C13;
+      --good:#57C48F;   --good-bg:#14311F;
+      --bad:#F28A7B;    --bad-bg:#3B1E19;
+      --mid:#5DC3D5;    --mid-bg:#103036;
+      --warn:#E8B94F;   --warn-bg:#382C0E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px -8px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#111316; --surface:#1A1D21; --surface-2:#23272C;
+    --ink:#E9EBED; --ink-2:#A9B0B8; --ink-3:#7D858F; --line:#2D3238;
+    --auto:#A9A1F6;   --auto-bg:#24214A;
+    --manual:#E5AB55; --manual-bg:#3B2C13;
+    --good:#57C48F;   --good-bg:#14311F;
+    --bad:#F28A7B;    --bad-bg:#3B1E19;
+    --mid:#5DC3D5;    --mid-bg:#103036;
+    --warn:#E8B94F;   --warn-bg:#382C0E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px -8px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:16px}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:780px; margin:0 auto; padding:28px 18px 96px; display:flex; flex-direction:column; gap:34px}
+  a{color:inherit}
+
+  header{display:flex; flex-direction:column; gap:10px}
+  .eyebrow{font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+  h1{margin:0; font-size:clamp(28px,7vw,40px); line-height:1.06; letter-spacing:-.022em; font-weight:800; text-wrap:balance}
+  .sub{margin:0; color:var(--ink-2); font-size:16px; max-width:58ch}
+
+  .legend{display:flex; flex-wrap:wrap; gap:10px}
+  .legend .tag{flex:1 1 260px}
+  .tag{display:flex; gap:10px; align-items:flex-start; border:1px solid var(--line); border-radius:10px; padding:11px 13px; background:var(--surface); box-shadow:var(--shadow)}
+  .tag b{display:block; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase}
+  .tag span{font-size:13.5px; color:var(--ink-2); line-height:1.4}
+  .tag.auto b{color:var(--auto)} .tag.man b{color:var(--manual)}
+  .dot{width:10px;height:10px;border-radius:3px;margin-top:5px;flex:none}
+  .tag.auto .dot{background:var(--auto)} .tag.man .dot{background:var(--manual)}
+
+  .callout{border-radius:12px; padding:14px 17px; font-size:14.5px; line-height:1.5; border:1px solid}
+  .callout b{font-weight:700}
+  .callout.warn{background:var(--warn-bg); border-color:var(--warn); color:var(--ink)}
+  .callout.warn .ttl{display:block; color:var(--warn); font-size:11.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; margin-bottom:6px}
+
+  .rules{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:18px}
+  .rules h2{margin:0 0 12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:700}
+  .rules ol{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px}
+  .rules li{position:relative; padding-left:34px; font-size:15px; line-height:1.45}
+  .rules li::before{
+    content:attr(data-n); position:absolute; left:0; top:1px; width:22px;height:22px;border-radius:6px;
+    background:var(--surface-2); color:var(--ink-2); font-size:12px; font-weight:700;
+    display:grid; place-items:center; font-variant-numeric:tabular-nums;
+  }
+  .rules li.law::before{background:var(--bad-bg); color:var(--bad)}
+  .rules .grp + .grp{border-top:1px solid var(--line); padding-top:18px}
+  .rules .tail{margin:0; font-size:14px; color:var(--ink-2); border-top:1px solid var(--line); padding-top:16px}
+
+  .funil{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow)}
+  .funil h2{margin:0 0 4px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:700}
+  .funil .lead{margin:0 0 14px; font-size:14.5px; color:var(--ink-2)}
+  .cols{display:flex; align-items:stretch; gap:0; overflow-x:auto; padding-bottom:4px}
+  .col{
+    flex:1 0 auto; min-width:118px; border:1px solid var(--line); background:var(--ground);
+    border-radius:9px; padding:9px 11px; display:flex; flex-direction:column; gap:3px;
+  }
+  .col + .col{margin-left:20px; position:relative}
+  .col + .col::before{
+    content:"›"; position:absolute; left:-16px; top:50%; transform:translateY(-52%);
+    color:var(--ink-3); font-size:19px; line-height:1;
+  }
+  .col i{font-style:normal; font-size:10.5px; font-weight:800; letter-spacing:.1em; color:var(--ink-3); font-variant-numeric:tabular-nums}
+  .col b{font-size:13.5px; font-weight:700; line-height:1.25}
+  .col.out{background:var(--bad-bg); border-color:var(--bad)} .col.out b{color:var(--bad)} .col.out i{color:var(--bad)}
+  .col.win{background:var(--good-bg); border-color:var(--good)} .col.win b{color:var(--good)} .col.win i{color:var(--good)}
+  .col.todo{border-style:dashed}
+
+  figure{margin:0}
+  .figbox{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 12px; overflow-x:auto; box-shadow:var(--shadow)}
+  .figbox svg{display:block; min-width:660px; width:100%; height:auto; color:var(--ink-3)}
+  figcaption{margin-top:9px; font-size:13px; color:var(--ink-3)}
+  .n rect{fill:var(--surface-2); stroke:var(--line); stroke-width:1.5}
+  .n text{fill:var(--ink); font-size:13px; font-weight:600; font-family:system-ui,sans-serif}
+  .n.ask rect{fill:none; stroke:var(--ink-3); stroke-dasharray:5 4}
+  .n.ask text{fill:var(--ink-2)}
+  .n.auto rect{fill:var(--auto-bg); stroke:var(--auto)} .n.auto text{fill:var(--auto)}
+  .n.good rect{fill:var(--good-bg); stroke:var(--good)} .n.good text{fill:var(--good); font-weight:700}
+  .n.bad rect{fill:var(--bad-bg); stroke:var(--bad)} .n.bad text{fill:var(--bad); font-weight:700}
+  svg a{cursor:pointer}
+  svg a:hover rect{stroke-width:2.5}
+  svg a:focus-visible rect{stroke:var(--auto); stroke-width:3}
+  .lnk{stroke:var(--ink-3); stroke-width:1.5; fill:none}
+  .lbl{fill:var(--ink-3); font-size:11.5px; font-family:system-ui,sans-serif}
+
+  .step{background:var(--surface); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; scroll-margin-top:14px}
+  .step > .head{display:flex; align-items:center; gap:11px; flex-wrap:wrap; padding:14px 18px; border-bottom:1px solid var(--line); background:var(--surface-2)}
+  .num{font-size:12px; font-weight:800; font-variant-numeric:tabular-nums; width:26px;height:26px;border-radius:7px; flex:none; display:grid; place-items:center; background:var(--ink); color:var(--surface)}
+  .head h3{margin:0; font-size:16.5px; font-weight:700; letter-spacing:-.01em; flex:1 1 auto}
+  .badge{font-size:10.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:4px 9px; border-radius:999px; white-space:nowrap}
+  .badge.auto{background:var(--auto-bg); color:var(--auto); border:1px solid var(--auto)}
+  .badge.man{background:var(--manual-bg); color:var(--manual); border:1px solid var(--manual)}
+  .body{padding:16px 18px; display:flex; flex-direction:column; gap:13px}
+  .note{font-size:14.5px; color:var(--ink-2); margin:0} .note b{color:var(--ink)}
+
+  .crm{display:flex; gap:10px; align-items:flex-start; background:var(--ground); border:1px dashed var(--line); border-radius:9px; padding:11px 13px; font-size:13.5px; line-height:1.45; color:var(--ink-2)}
+  .crm b{display:block; color:var(--ink-3); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; margin-bottom:3px}
+
+  .msg{position:relative; border:1px solid var(--line); border-left:4px solid var(--ink-3); border-radius:4px 10px 10px 4px; background:var(--ground); padding:14px 46px 14px 15px}
+  .msg p{margin:0; font-family:Georgia,"Iowan Old Style","Times New Roman",serif; font-size:16.5px; line-height:1.55}
+  .msg p + p{margin-top:11px; padding-top:11px; border-top:1px dashed var(--line)}
+  .msg.auto{border-left-color:var(--auto)} .msg.man{border-left-color:var(--manual)}
+  .var{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.86em; background:var(--surface-2); padding:1px 5px; border-radius:4px; color:var(--ink-2)}
+  .copy{position:absolute; top:8px; right:8px; width:30px; height:30px; border-radius:7px; border:1px solid var(--line); background:var(--surface); color:var(--ink-3); cursor:pointer; font-size:13px; display:grid; place-items:center; padding:0; transition:color .15s, border-color .15s}
+  .copy:hover{color:var(--ink); border-color:var(--ink-3)}
+  .copy:focus-visible{outline:2px solid var(--auto); outline-offset:2px}
+  .copy.ok{color:var(--good); border-color:var(--good)}
+  .alt{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:2px 0 -4px}
+
+  .branches{display:flex; flex-direction:column; gap:9px; margin-top:3px}
+  .br{border-left:3px solid var(--line); padding:9px 0 9px 13px; font-size:14.5px; line-height:1.45}
+  .br b{display:block; font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:3px}
+  .br.g{border-left-color:var(--good)} .br.g b{color:var(--good)}
+  .br.b{border-left-color:var(--bad)} .br.b b{color:var(--bad)}
+  .br.m{border-left-color:var(--mid)} .br.m b{color:var(--mid)}
+  .br.n{border-left-color:var(--ink-3)} .br.n b{color:var(--ink-3)}
+  .go{display:inline-block; font-weight:700; text-decoration:none; border-bottom:2px solid currentColor; padding-bottom:1px; white-space:nowrap}
+  .br.g .go{color:var(--good)} .br.b .go{color:var(--bad)} .br.m .go{color:var(--mid)} .br.n .go{color:var(--ink-2)}
+  .go:focus-visible{outline:2px solid var(--auto); outline-offset:3px; border-radius:2px}
+
+  .tblbox{overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--surface); box-shadow:var(--shadow)}
+  table{border-collapse:collapse; width:100%; min-width:520px}
+  th,td{text-align:left; padding:12px 15px; border-bottom:1px solid var(--line); vertical-align:top; font-size:14.5px; line-height:1.45}
+  th{font-size:11.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:700; background:var(--surface-2)}
+  tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600; width:34%}
+  td:last-child{font-family:Georgia,"Iowan Old Style",serif; color:var(--ink-2)}
+
+  h2.sec{margin:0 0 -14px; font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+  .federal{background:var(--mid-bg); border:1px solid var(--mid); border-radius:14px; padding:17px 20px; scroll-margin-top:14px}
+  .federal h3{margin:0 0 9px; font-size:16px; color:var(--mid); font-weight:700}
+  .federal p{margin:0 0 9px; font-size:15px; line-height:1.5}
+  .federal p:last-child{margin-bottom:0}
+  footer{border-top:1px solid var(--line); padding-top:16px; font-size:13px; color:var(--ink-3)}
+
+  #top{
+    position:fixed; right:16px; bottom:16px; z-index:9;
+    background:var(--ink); color:var(--ground); border:none; border-radius:999px;
+    padding:11px 17px; font-size:13.5px; font-weight:700; cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,0,0,.28); opacity:0; pointer-events:none; transition:opacity .2s;
+    font-family:inherit;
+  }
+  #top.on{opacity:1; pointer-events:auto}
+  #top:focus-visible{outline:3px solid var(--auto); outline-offset:2px}
+
+  .backbar{max-width:780px;margin:0 auto;padding:14px 18px 0}
+  .backbar a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:13.5px;font-weight:600;
+    color:var(--ink-2);border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:7px 14px}
+  .backbar a:hover{color:var(--ink);border-color:var(--ink-3)}
+  .backbar a:focus-visible{outline:2px solid var(--auto);outline-offset:2px}
+  @media print{
+    .backbar{display:none}
+    body{background:#fff} .copy,#top{display:none}
+    .step,.rules,.figbox,.tblbox,.federal{box-shadow:none; break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="backbar"><a href="./">&larr; Painel do gabinete</a></div>
+<div class="wrap" id="topo">
+
+<header>
+  <div class="eyebrow">Campanha Jessé Lopes &middot; atualizado 17/08</div>
+  <h1>Roteiro de atendimento no WhatsApp</h1>
+  <p class="sub">Do primeiro contato até a entrega marcada. Cada passo mostra o texto e diz se a mensagem sai sozinha ou se é você quem escreve.</p>
+</header>
+
+<div class="legend">
+  <div class="tag auto"><span class="dot"></span><span><b>Automática</b>Sai pelo sistema, já pronta. Você não escreve e não muda o texto.</span></div>
+  <div class="tag man"><span class="dot"></span><span><b>Você escreve</b>Você digita, com suas palavras. Nunca cole igual em dois contatos.</span></div>
+</div>
+
+<div class="callout warn">
+  <span class="ttl">Leia antes de usar</span>
+  <b>Os textos desta página são referência, não são para copiar palavra por palavra.</b> A única exceção é o passo 1 automático, que sai pronto do sistema e não pode ser mudado. Todo o resto você adapta ao jeito da conversa. Duas pessoas não podem receber a mesma frase.
+</div>
+
+<div class="rules">
+  <div class="grp">
+    <h2>Regras na conversa</h2>
+    <ol>
+      <li data-n="1"><b>Responda no mesmo dia.</b> Depois de 24 horas sem resposta dele, o sistema trava e você não escreve mais livre, só sai mensagem pronta. Dentro dessas 24 horas você fala à vontade e não tem custo por mensagem.</li>
+      <li data-n="2"><b>Nunca copie e cole.</b> Escreva cada mensagem do zero, mesmo dizendo a mesma coisa. Mensagem repetida em série é o que faz o WhatsApp bloquear o número, e é o que faz o eleitor perceber que está falando com um robô. Os textos desta página são referência para você entender o que dizer, não são para colar.</li>
+      <li data-n="3"><b>Só ofereça dia depois de saber a região.</b> Primeiro descubra o bairro, veja qual dia a equipe passa lá, e aí sim pergunte "manhã ou tarde?". Oferecer dia antes disso é prometer o que talvez não dê pra cumprir.</li>
+      <li data-n="4"><b>Fale os itens pelo nome.</b> Adesivo de carro, botton, santinho. Ninguém quer "material de campanha", mas muita gente quer adesivo de carro.</li>
+      <li data-n="5"><b>Quem não quer visita não é perdido.</b> Antes de desistir, ofereça deixar na portaria ou mandar o digital.</li>
+    </ol>
+  </div>
+
+  <div class="grp">
+    <h2>Regras no sistema, depois de cada interação</h2>
+    <ol>
+      <li data-n="6"><b>Registre na nota interna, sempre.</b> Toda tentativa, resposta ou combinado vira uma entrada nova na nota: o que era, data e hora, e o que aconteceu. Nunca apague nem reescreva nota antiga. <b>Se não está escrito, não aconteceu</b>, e ninguém consegue retomar o contato depois nem entender por que ele não fechou.</li>
+      <li data-n="7"><b>Deixe o card na etapa certa do funil.</b> Mova assim que o critério da etapa for cumprido, nem antes nem depois. Card parado na coluna errada some da operação. A etapa de cada passo está indicada na faixa pontilhada dentro dele.</li>
+      <li data-n="8"><b>Nota interna é para a equipe, não para o eleitor.</b> Ele não vê o que você escreve ali. Nunca escreva acompanhamento na conversa dele.</li>
+      <li data-n="9" class="law"><b>Quem pediu para parar, para de verdade.</b> Marque no contato e nenhuma pessoa da equipe manda mais nada para esse número, em nenhuma etapa, até o fim da campanha. Isso não é regra interna, é lei.</li>
+    </ol>
+  </div>
+
+  <p class="tail"><b>Na dúvida, não invente.</b> Número, prazo, o que vai no material, se a equipe atende tal cidade: se você não tem certeza, pergunte à coordenação antes de responder. Uma informação errada dita com segurança custa mais caro que uma demora de dez minutos.</p>
+</div>
+
+<div class="funil">
+  <h2>As etapas do funil</h2>
+  <p class="lead">Onde o card precisa estar em cada momento. Cada passo abaixo diz para qual coluna mover.</p>
+  <div class="cols">
+    <div class="col"><i>01</i><b>Contato Iniciado</b></div>
+    <div class="col"><i>02</i><b>Contato Aceito</b></div>
+    <div class="col"><i>03</i><b>Qualificação</b></div>
+    <div class="col"><i>04</i><b>Visita Agendada</b></div>
+    <div class="col win"><i>05</i><b>Visita Concretizada</b></div>
+    <div class="col out"><i>saída</i><b>Perdidos</b></div>
+  </div>
+  <p class="lead" style="margin:14px 0 0"><b>E quem aceitou só o material, sem visita?</b> Vai para <b>Visita Concretizada</b> igual aos outros, com a observação "só material" na nota interna. <b>Nunca em Perdidos</b>: a pessoa recebeu o material, então é resultado. Jogar em Perdidos estraga o número da campanha.</p>
+</div>
+
+<figure>
+  <div class="figbox">
+    <svg viewBox="0 0 780 800" role="img" aria-label="Fluxo do atendimento: a abertura automática ou manual leva à pergunta se a pessoa respondeu. Quem recusa ou some vira perdido. Quem responde passa por explicação, cidade, endereço e fechamento de dia, terminando em visita agendada, só material ou perdido.">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+
+      <g class="lnk" marker-end="url(#ar)">
+        <path d="M205,62 L205,84" marker-end="none"/>
+        <path d="M425,62 L425,84" marker-end="none"/>
+        <path d="M205,84 L425,84" marker-end="none"/>
+        <path d="M315,84 L315,104"/>
+        <path d="M315,148 L315,170 L103,170 L103,200"/>
+        <path d="M315,148 L315,200"/>
+        <path d="M415,126 L660,126 L660,200"/>
+        <path d="M103,244 L103,286"/>
+        <path d="M103,330 L103,372"/>
+        <path d="M315,244 L315,286"/>
+        <path d="M315,330 L315,372"/>
+        <path d="M315,416 L315,458"/>
+        <path d="M315,502 L315,524 L250,524 L250,560"/>
+        <path d="M315,502 L315,524 L530,524 L530,560"/>
+        <path d="M530,604 L530,646"/>
+        <path d="M530,690 L530,712 L425,712 L425,732"/>
+        <path d="M530,690 L530,712 L665,712 L665,732"/>
+      </g>
+
+      <g class="lbl">
+        <text x="205" y="164" text-anchor="middle">não respondeu</text>
+        <text x="325" y="192" text-anchor="start">respondeu</text>
+        <text x="537" y="118" text-anchor="middle">recusou na hora</text>
+        <text x="282" y="518" text-anchor="middle">aceitou</text>
+        <text x="440" y="518" text-anchor="middle">não quer visita</text>
+        <text x="470" y="706" text-anchor="middle">aceita</text>
+        <text x="612" y="706" text-anchor="middle">não</text>
+      </g>
+
+      <a href="#p1"><g class="n auto"><rect x="110" y="18" width="190" height="44" rx="8"/><text x="205" y="45" text-anchor="middle">1 &middot; Abertura automática</text></g></a>
+      <a href="#p1"><g class="n"><rect x="330" y="18" width="190" height="44" rx="8"/><text x="425" y="45" text-anchor="middle">1 &middot; Abertura na mão</text></g></a>
+      <g class="n ask"><rect x="215" y="104" width="200" height="44" rx="8"/><text x="315" y="131" text-anchor="middle">Ele respondeu?</text></g>
+
+      <a href="#p6"><g class="n"><rect x="15" y="200" width="176" height="44" rx="8"/><text x="103" y="227" text-anchor="middle">6 &middot; Follow-up 48h</text></g></a>
+      <a href="#p6"><g class="n"><rect x="15" y="286" width="176" height="44" rx="8"/><text x="103" y="313" text-anchor="middle">6 &middot; Ligação</text></g></a>
+      <a href="#p8"><g class="n bad"><rect x="15" y="372" width="176" height="44" rx="8"/><text x="103" y="399" text-anchor="middle">Perdido</text></g></a>
+
+      <a href="#p2"><g class="n"><rect x="210" y="200" width="210" height="44" rx="8"/><text x="315" y="227" text-anchor="middle">2 &middot; Explica e reserva</text></g></a>
+      <a href="#p8"><g class="n bad"><rect x="560" y="200" width="200" height="44" rx="8"/><text x="660" y="227" text-anchor="middle">Perdido</text></g></a>
+      <a href="#p3"><g class="n"><rect x="210" y="286" width="210" height="44" rx="8"/><text x="315" y="313" text-anchor="middle">3 &middot; Cidade e bairro</text></g></a>
+      <a href="#p4"><g class="n"><rect x="210" y="372" width="210" height="44" rx="8"/><text x="315" y="399" text-anchor="middle">4 &middot; Endereço</text></g></a>
+      <a href="#p5"><g class="n ask"><rect x="210" y="458" width="210" height="44" rx="8"/><text x="315" y="485" text-anchor="middle">5 &middot; Que dia da região?</text></g></a>
+
+      <a href="#p5"><g class="n good"><rect x="150" y="560" width="200" height="44" rx="8"/><text x="250" y="587" text-anchor="middle">Visita agendada</text></g></a>
+      <a href="#p7"><g class="n"><rect x="430" y="560" width="200" height="44" rx="8"/><text x="530" y="587" text-anchor="middle">7 &middot; Não quer visita</text></g></a>
+      <a href="#p7"><g class="n ask"><rect x="430" y="646" width="200" height="44" rx="8"/><text x="530" y="673" text-anchor="middle">Portaria ou digital?</text></g></a>
+      <a href="#p7"><g class="n good"><rect x="330" y="732" width="190" height="44" rx="8"/><text x="425" y="759" text-anchor="middle">Só material</text></g></a>
+      <a href="#p8"><g class="n bad"><rect x="580" y="732" width="170" height="44" rx="8"/><text x="665" y="759" text-anchor="middle">Perdido</text></g></a>
+    </svg>
+  </div>
+  <figcaption>Clique em qualquer caixa para ir direto ao passo. Toda conversa termina em um destes três lugares: visita agendada, só material, ou perdido.</figcaption>
+</figure>
+
+<h2 class="sec">Os passos</h2>
+
+<!-- 1 -->
+<div class="step" id="p1">
+  <div class="head"><span class="num">1</span><h3>A abertura</h3><span class="badge auto">Automática</span></div>
+  <div class="body">
+    <p class="note"><b>Como saber se foi automática:</b> você abre a conversa e a primeira mensagem já está lá, sem você ter digitado. Se você digitou, foi na mão, e aí escreva do seu jeito.</p>
+    <p class="note"><b>Sempre se identifique pelo nome.</b> A pessoa precisa saber com quem está falando, não só de qual campanha.</p>
+
+    <p class="alt">Versão A &middot; veio de indicação</p>
+    <div class="msg auto"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Oi <span class="var">nome</span>, tudo bem? Aqui é o <span class="var">seu nome</span>, da equipe do deputado Jessé Lopes. O <span class="var">quem indicou</span> passou seu contato e falou que você acompanha o trabalho dele. Posso te explicar rapidinho o motivo do contato?</p></div>
+
+    <p class="alt">Versão B &middot; veio da região ou de grupo</p>
+    <div class="msg auto"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Oi <span class="var">nome</span>, tudo bem? Aqui é o <span class="var">seu nome</span>, da equipe do deputado Jessé Lopes. Nossa equipe vai estar em <span class="var">cidade</span> essa semana entregando o material da campanha em mãos. Posso te falar rapidinho?</p></div>
+
+    <p class="alt">Versão C &middot; Biguaçu e Campos Novos</p>
+    <div class="msg auto"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Oi <span class="var">nome</span>, tudo bem? Aqui é o <span class="var">seu nome</span>, da equipe do Dr. Marcelo, candidato a deputado federal. Nossa equipe vai estar em <span class="var">cidade</span> essa semana entregando o material da campanha em mãos. Posso te falar rapidinho?</p></div>
+
+    <div class="crm"><span><b>No sistema</b>Card em <strong>Contato Iniciado</strong>. Registre na nota interna: tentativa 1, data e hora, e qual versão foi usada.</span></div>
+
+    <div class="branches">
+      <div class="br g"><b>Respondeu qualquer coisa</b>"oi", "sim", "pode", "quem é?", "o que é isso?" &mdash; tudo isso é sim. <a class="go" href="#p2">Ir para o passo 2 &rarr;</a></div>
+      <div class="br b"><b>Respondeu recusando</b>"não quero", "para de mandar", "me tira daí". <a class="go" href="#p8">Ir para o passo 8 &rarr;</a></div>
+      <div class="br n"><b>Não respondeu nada</b><a class="go" href="#p6">Ir para o passo 6 &rarr;</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="step" id="p2">
+  <div class="head"><span class="num">2</span><h3>Explicar o motivo e pedir para reservar</h3><span class="badge man">Você escreve</span></div>
+  <div class="body">
+    <p class="note">É a mensagem mais importante do roteiro. Ela faz três coisas em poucas linhas: diz que a entrega é <b>em mãos</b>, diz <b>o que é</b> pelo nome, e termina com um pedido pequeno. Não peça visita ainda. Peça só para reservar.</p>
+
+    <p class="alt">Versão 1</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>A gente tá passando pessoalmente na sua região pra entregar o material da campanha do Jessé pra quem apoia. Vai adesivo de carro, botton e o santinho com os números de toda a chapa. Como a equipe não consegue passar em todo mundo, tô montando a lista de quem quer receber. Posso reservar o seu?</p></div>
+
+    <p class="alt">Versão 2</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Deixa eu te explicar rapidinho. O Jessé tá em campanha pra reeleição de deputado estadual e a gente tá fazendo entrega em mãos do material dele aqui na sua região. É adesivo de carro, botton e o santinho com a chapa completa. Quer que eu separe um pra você?</p></div>
+
+    <p class="alt">Versão 3</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>É o seguinte: essa semana a nossa equipe passa aí na sua região levando o material do Jessé pra quem apoia o trabalho dele. Adesivo de carro, botton e santinho. Tô fazendo a lista agora, te coloco?</p></div>
+
+    <div class="crm"><span><b>No sistema</b>Ele respondeu, então mova para <strong>Contato Aceito</strong>. Na nota interna registre a quebra de LGPD: "consentimento obtido em dd/mm hh:mm".</span></div>
+
+    <div class="branches">
+      <div class="br g"><b>Ele topou</b><a class="go" href="#p3">Ir para o passo 3 &rarr;</a></div>
+      <div class="br n"><b>Ficou em dúvida ou perguntou algo</b><a class="go" href="#objecoes">Ver a tabela de objeções &rarr;</a> e volte para cá.</div>
+      <div class="br b"><b>Recusou</b><a class="go" href="#p8">Ir para o passo 8 &rarr;</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="step" id="p3">
+  <div class="head"><span class="num">3</span><h3>Confirmar cidade e bairro</h3><span class="badge man">Você escreve</span></div>
+  <div class="body">
+    <p class="note">O contato já chega com a <b>tag de região</b> preenchida, mas essa informação veio de quem passou o contato, não da própria pessoa. Ela pode estar errada. Então <b>confirme, não pergunte do zero</b>, e sempre dê o motivo: "cada região tem um dia" faz a pessoa responder na hora, porque parece organização e não interrogatório.</p>
+
+    <p class="alt">Versão 1 &middot; quando a tag já traz a cidade</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Show! Aqui tá marcado que você é de <span class="var">cidade</span>, é isso mesmo? E de qual bairro? Pergunto porque a gente tem um dia certo pra cada região e não quero te encaixar no dia errado.</p></div>
+    <p class="alt">Versão 2</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Fechou. Deixa eu só confirmar: você mora em <span class="var">cidade</span> mesmo? E qual bairro? Cada região tem o dia da semana que a equipe passa.</p></div>
+    <p class="alt">Versão 3 &middot; quando não veio tag nenhuma</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Perfeito. Me diz sua cidade e o bairro? É pra eu ver qual dia a equipe passa aí na sua região.</p></div>
+
+    <div class="crm"><span><b>No sistema</b>Mova para <strong>Qualificação</strong>. Anote cidade e bairro na nota interna. <strong>Se a cidade que ele falou for diferente da tag, corrija a tag agora</strong>, não deixe para depois.</span></div>
+
+    <div class="branches">
+      <div class="br g"><b>É de cidade que a gente atende</b><a class="go" href="#p4">Ir para o passo 4 &rarr;</a></div>
+      <div class="br m"><b>É de fora da área</b>"A gente ainda não tá com equipe em <span class="var">cidade</span>, mas posso te mandar o material digital por aqui. Quer?" Se aceitar e você mandar, mova para <strong>Visita Concretizada</strong> com a nota "só material". Não jogue em Perdidos.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="step" id="p4">
+  <div class="head"><span class="num">4</span><h3>Pegar o endereço</h3><span class="badge man">Você escreve</span></div>
+  <div class="body">
+    <p class="note">Ponto de referência não é detalhe. Sem ele o assessor roda e perde visita.</p>
+    <p class="alt">Versão 1</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Me passa o endereço completo com um ponto de referência? Tipo "do lado da farmácia", "portão verde". É pro nosso assessor não ficar rodando.</p></div>
+    <p class="alt">Versão 2</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Anota aí pra mim: rua, número e algum ponto de referência. Ajuda muito o pessoal a achar de primeira.</p></div>
+    <p class="alt">Versão 3</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Qual o endereço? E se der, manda um ponto de referência junto, porque nem sempre o GPS acha certo aí.</p></div>
+
+    <div class="crm"><span><b>No sistema</b>Endereço completo e ponto de referência na nota interna. O card continua em <strong>Qualificação</strong> até o dia estar marcado.</span></div>
+    <div class="branches"><div class="br g"><b>Endereço na mão</b><a class="go" href="#p5">Ir para o passo 5 &rarr;</a></div></div>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="step" id="p5">
+  <div class="head"><span class="num">5</span><h3>Fechar o dia da região</h3><span class="badge man">Você escreve</span></div>
+  <div class="body">
+    <p class="note">Aqui é onde a maioria dos atendimentos morre. <b>Primeiro veja na tabela de regiões qual dia a equipe passa naquele bairro.</b> Só então ofereça, e ofereça <b>duas opções, as duas boas para você</b>. Quem responde "manhã" ou "tarde" já disse sim sem perceber.</p>
+
+    <p class="alt">Versão 1</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Aí na sua região a equipe passa na <span class="var">dia</span>. Fica melhor de manhã ou à tarde?</p></div>
+    <p class="alt">Versão 2</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Nosso pessoal tá em <span class="var">bairro</span> na <span class="var">dia</span>. Você prefere de manhã ou depois do almoço?</p></div>
+    <p class="alt">Versão 3</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Consigo te encaixar na <span class="var">dia</span>, que é o dia da sua região. Manhã ou tarde funciona melhor pra você?</p></div>
+
+    <p class="alt">Depois que ele escolher, confirme assim</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Fechado! Anotei aqui: <span class="var">dia</span> de <span class="var">período</span>, no <span class="var">endereço</span>. O assessor vai identificado e é rapidinho, ele só entrega e troca uma ideia. Qualquer coisa me chama por aqui.</p></div>
+
+    <div class="crm"><span><b>No sistema</b>Mova para <strong>Visita Agendada</strong>. Na nota interna: endereço com referência, dia, período, e qualquer observação útil pro assessor. Depois avise o assessor da região.</span></div>
+
+    <div class="branches">
+      <div class="br g"><b>Escolheu um período</b>Pronto, é visita agendada.</div>
+      <div class="br m"><b>Disse que não quer visita</b>Não encerre. <a class="go" href="#p7">Ir para o passo 7 &rarr;</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="step" id="p6">
+  <div class="head"><span class="num">6</span><h3>Ele não respondeu</h3><span class="badge man">Você escreve</span></div>
+  <div class="body">
+    <div class="callout warn">
+      <span class="ttl">Atenção, isso depende do número</span>
+      Se a pessoa <b>nunca respondeu</b>, a janela de 24 horas nunca abriu. Nos números da API oficial <b>não dá para mandar o toque 2 escrito na mão</b>, o sistema não deixa. Enquanto não houver um modelo de follow-up aprovado, nesses números a sequência é: abertura, depois <b>ligação</b>, depois perdido. O toque 2 abaixo vale para os números não oficiais, onde você escreve livre.
+    </div>
+
+    <p class="note">São <b>três toques no total</b>, não mais. Espere 48 horas depois da abertura para o segundo.</p>
+
+    <p class="alt">Toque 2 &middot; 48h depois &middot; só nos números não oficiais</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Oi <span class="var">nome</span>, passando de novo aqui. Ainda dá tempo de te incluir na entrega do material aqui em <span class="var">cidade</span> essa semana. Quer que eu reserve o seu?</p></div>
+
+    <p class="alt">Toque 3 &middot; ligação &middot; mais 72h depois</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar roteiro">&#9109;</button><p>Oi, <span class="var">nome</span>? Tudo bem? Aqui é o <span class="var">seu nome</span>, da equipe do Jessé Lopes. Te mandei mensagem no WhatsApp sobre a entrega do material aí na sua região. Você tem um minutinho?</p></div>
+
+    <p class="note">Se não atender, não deixe recado longo. Registre e siga.</p>
+
+    <div class="crm"><span><b>No sistema</b>Uma nota interna por tentativa, sempre: número da tentativa, data e hora, canal (WhatsApp ou ligação) e o que aconteceu. <strong>É isso que permite saber depois por que o contato não fechou.</strong> Sem resposta depois da ligação, mova para <strong>Perdidos</strong> com o motivo.</span></div>
+
+    <div class="branches">
+      <div class="br g"><b>Respondeu a qualquer momento</b>Pare a sequência na hora. <a class="go" href="#p2">Ir para o passo 2 &rarr;</a></div>
+      <div class="br b"><b>Silêncio depois da ligação</b><a class="go" href="#p8">Ir para o passo 8 &rarr;</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="step" id="p7">
+  <div class="head"><span class="num">7</span><h3>Ele não quer visita</h3><span class="badge man">Você escreve</span></div>
+  <div class="body">
+    <p class="note">Não é um não. Na maioria das vezes a pessoa só não quer estranho na porta, ou não vai estar em casa. <b>Ofereça duas saídas antes de desistir.</b></p>
+    <p class="alt">Versão 1</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Sem problema nenhum! Prefere que a gente deixe na portaria ou com alguém da casa? Ou, se for melhor, te mando a versão digital por aqui mesmo.</p></div>
+    <p class="alt">Versão 2</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Tranquilo, você nem precisa estar em casa. A gente pode deixar com um vizinho ou na portaria. Ou te mando digital por aqui. O que fica melhor?</p></div>
+    <p class="alt">Versão 3</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Entendo! Então faz o seguinte: te mando o material digital por aqui agora. Se quiser o adesivo de carro depois, esse só dá em mãos, aí a gente combina.</p></div>
+
+    <div class="crm"><span><b>No sistema</b>Aceitou deixar na portaria: <strong>Visita Agendada</strong>, com a observação "entregar sem falar com o eleitor". Quer só o digital: depois de mandar, <strong>Visita Concretizada</strong> com a nota "só material". Nos dois casos, nota interna com o combinado.</span></div>
+
+    <div class="branches">
+      <div class="br g"><b>Aceitou deixar na portaria ou com alguém</b>Pegue o endereço e feche o dia normal. <a class="go" href="#p4">Ir para o passo 4 &rarr;</a></div>
+      <div class="br m"><b>Quer só o digital</b>Mande, mova para <strong>Visita Concretizada</strong> e registre "só material" na nota. É resultado, não perda, então nunca vai para Perdidos.</div>
+      <div class="br b"><b>Não quer nada</b><a class="go" href="#p8">Ir para o passo 8 &rarr;</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="step" id="p8">
+  <div class="head"><span class="num">8</span><h3>Encerrar bem</h3><span class="badge man">Você escreve</span></div>
+  <div class="body">
+    <p class="note">Encerre curto e sem ressentimento. Quem sai bem tratado não vira reclamação, e às vezes volta.</p>
+    <div class="msg man"><button class="copy" aria-label="Copiar mensagem">&#9109;</button><p>Tranquilo, obrigado pela sinceridade. Não vou mais te incomodar. Se mudar de ideia, é só me chamar por aqui.</p></div>
+    <p class="note"><b>Se ele pediu para parar de receber mensagem, marque isso no contato.</b> Esse número não pode receber mais nada da campanha, em nenhuma etapa, por ninguém da equipe. Não é regra interna, é lei.</p>
+    <div class="crm"><span><b>No sistema</b>Mova para <strong>Perdidos</strong> e registre o motivo na nota interna: recusa explícita, sem resposta após a ligação, ou parou de responder na qualificação.</span></div>
+    <div class="branches"><div class="br n"><b>Fim do atendimento</b><a class="go" href="#topo">Voltar ao início &rarr;</a></div></div>
+  </div>
+</div>
+
+<!-- federal -->
+<div class="federal" id="federal">
+  <h3>A pergunta do deputado federal</h3>
+  <p>Encaixe em qualquer ponto depois do passo 2, quando a conversa estiver fluindo: <em>"Ah, deixa eu te perguntar: você já tem candidato a deputado federal?"</em></p>
+  <p><b>Se já tem:</b> não insista. Segue o atendimento normal.</p>
+  <p><b>Se não tem ou está indeciso, o nome muda conforme a cidade:</b></p>
+  <p>&bull; <b>Biguaçu e Campos Novos &rarr; Dr. Marcelo.</b> Nessas duas cidades ele é o primeiro, o material dele vai sempre junto e você nem precisa perguntar.</p>
+  <p>&bull; <b>Todas as outras cidades &rarr; Fabrício.</b> É o federal que a gente apoia no restante da região.</p>
+  <p>Texto: <em>"Então deixa eu te apresentar o <span class="var">Dr. Marcelo / Fabrício</span>, que é quem a gente tá apoiando pra federal aqui na sua região. Vou colocar o material dele junto no seu, beleza?"</em></p>
+</div>
+
+<h2 class="sec" id="objecoes">Quando ele disser isso</h2>
+<div class="tblbox">
+<table>
+  <thead><tr><th>Ele diz</th><th>Você responde</th></tr></thead>
+  <tbody>
+    <tr><td>Como conseguiu meu número?</td><td>Foi o <span class="var">nome</span> que passou seu contato, como te falei na primeira mensagem. Se preferir, eu tiro seu número agora mesmo, sem problema nenhum.</td></tr>
+    <tr><td>Não gosto de política</td><td>Entendo, e nem vou falar de política. É só a entrega do material, leva dois minutos. Quer que eu deixe?</td></tr>
+    <tr><td>Isso é golpe?</td><td>Nada disso. O Jessé é deputado estadual, número 22022, pode conferir. O assessor vai identificado, não pede nada e não vende nada, só entrega.</td></tr>
+    <tr><td>Não precisa vir, manda por aqui</td><td>Claro, te mando o digital agora. Mas o adesivo de carro só dá em mãos. Quer que eu reserve um pra você?</td></tr>
+    <tr><td>Tô trabalhando, não tenho tempo</td><td>Sem problema, você nem precisa estar. A gente deixa com alguém da casa ou na portaria. Qual fica melhor?</td></tr>
+    <tr><td>Quanto custa?</td><td>Nada, é cortesia da campanha.</td></tr>
+    <tr><td>Vou ver e te falo</td><td>Fechado. Só pra eu não perder sua vaga: de manhã ou de tarde é mais provável?</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer>Dúvida no meio de um atendimento? Chame a coordenação antes de improvisar. Errar o texto na abertura custa o contato inteiro.</footer>
+
+</div>
+
+<button id="top" type="button">&uarr; Voltar ao início</button>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var box = btn.closest('.msg');
+      var txt = Array.prototype.map.call(box.querySelectorAll('p'), function(p){
+        return p.textContent.replace(/\s+/g,' ').trim();
+      }).join('\n\n');
+      var done = function(){
+        btn.textContent = '✓'; btn.classList.add('ok');
+        setTimeout(function(){ btn.innerHTML = '&#9109;'; btn.classList.remove('ok'); }, 1400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt, done); });
+      } else { fallback(txt, done); }
+    });
+  });
+  function fallback(txt, done){
+    var ta = document.createElement('textarea');
+    ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+  var topBtn = document.getElementById('top');
+  topBtn.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+  window.addEventListener('scroll', function(){
+    topBtn.classList.toggle('on', window.scrollY > 500);
+  }, {passive:true});
+</script>
+</body>
+</html>
